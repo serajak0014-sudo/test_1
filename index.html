@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title data-lang-en="Welcome — Your Company" data-lang-ar="مرحباً بكم — شركتي">مرحباً بكم — شركتي</title>
+  <meta name="description" data-lang-ar="موقع رسمي لعرض خدمات شركتك: تصميم، تطوير، واستشارات تقنية" data-lang-en="Official site showcasing your company's services: design, development and consulting"> 
+  <meta name="author" content="Your Company">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo="> <!-- placeholder favicon -->
+
+  <style>
+    /* =====================
+       Clean, professional responsive stylesheet
+       ===================== */
+    :root{
+      --bg:#f7f8fb; --card:#ffffff; --accent:#065fd4; --accent-2:#00a3ff; --muted:#6b7280; --radius:14px; --maxw:1100px;
+      --text:#0f1724; --page-padding:32px; --glass: rgba(255,255,255,0.06);
+      font-family: Inter, "Segoe UI", Tahoma, Arial, sans-serif; color-scheme: light; font-size:16px;
+    }
+    [data-theme="dark"]{
+      --bg:#071025; --card:#071729; --accent:#60a5fa; --accent-2:#3b82f6; --muted:#9fb3cc; --text:#e6f0ff; color-scheme: dark;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;display:flex;align-items:flex-start;justify-content:center;padding:var(--page-padding);transition:background .25s ease,color .2s ease}
+    a{color:inherit}
+
+    .container{width:100%;max-width:var(--maxw)}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:12px}
+
+    /* Brand */
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:20px}
+    .brand h1{margin:0;font-size:18px}
+    .brand p{margin:0;font-size:13px;color:var(--muted)}
+
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{padding:8px 10px;border-radius:10px;text-decoration:none;color:var(--muted);font-weight:600}
+    nav a:focus{outline:2px solid rgba(6,95,212,0.18);outline-offset:2px}
+
+    /* Controls */
+    .controls{display:flex;gap:8px;align-items:center}
+    .btn{border:1px solid transparent;padding:8px 10px;border-radius:10px;background:transparent;cursor:pointer;font-weight:700}
+    .btn[aria-pressed="true"], .btn.active{background:var(--accent);color:white;border-color:transparent}
+    .icon{font-size:14px}
+
+    /* Hero */
+    .hero{background:linear-gradient(180deg, rgba(6,95,212,0.06), transparent);padding:28px;border-radius:var(--radius);display:flex;gap:28px;align-items:stretch}
+    .hero-left{flex:1}
+    .eyebrow{color:var(--accent);font-weight:800;margin-bottom:8px;font-size:13px}
+    h2{margin:0 0 12px 0;font-size:28px;line-height:1.12}
+    p.lead{margin:0 0 18px 0;color:var(--muted);font-size:15px}
+    .cta{display:inline-block;background:var(--accent);color:white;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:800}
+
+    /* Services grid */
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(2,6,23,0.06);transition:transform .18s ease,box-shadow .18s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.08)}
+    .service-title{font-weight:800;margin-bottom:6px}
+    .service-desc{color:var(--muted);font-size:14px}
+
+    /* Contact card */
+    .hero-right{width:340px}
+    .contact-card{padding:18px;border-radius:12px;background:linear-gradient(180deg,var(--card), rgba(243,246,251,0.04))}
+    label{display:block;margin-bottom:6px;font-size:13px}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef9;background:transparent;color:var(--text);font-size:14px}
+    button[type="submit"]{cursor:pointer}
+    .small{font-size:13px;color:var(--muted)}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* language visibility fallback - JS will control this */
+    [data-lang]{display:none}
+
+    /* responsive */
+    @media (max-width:880px){.hero{flex-direction:column}.hero-right{width:100%}header{flex-direction:column;align-items:flex-start}}
+
+    /* accessibility focus */
+    :focus{outline:2px dashed rgba(6,95,212,0.15);outline-offset:3px}
+
+  </style>
+</head>
+<body>
+  <div class="container" id="app">
+    <header>
+      <div class="brand" role="banner">
+        <div class="logo" aria-hidden="true">ش</div>
+        <div>
+          <h1><span data-lang="ar">اسم شركتك</span><span data-lang="en">Your Company</span></h1>
+          <p class="small"><span data-lang="ar">حلول مهنية لاحتياجاتك</span><span data-lang="en">Professional solutions for your needs</span></p>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <nav aria-label="Main navigation">
+          <a href="#services" data-lang="ar">الخدمات</a>
+          <a href="#about" data-lang="ar">حولنا</a>
+          <a href="#contact" data-lang="ar">تواصل</a>
+          <a href="#services" data-lang="en">Services</a>
+          <a href="#about" data-lang="en">About</a>
+          <a href="#contact" data-lang="en">Contact</a>
+        </nav>
+
+        <div class="controls" role="group" aria-label="Language and theme controls">
+          <div aria-label="Language switcher">
+            <button id="btn-ar" class="btn" aria-pressed="false" title="العربية">العربية</button>
+            <button id="btn-en" class="btn" aria-pressed="false" title="English">English</button>
+          </div>
+          <button id="theme-btn" class="btn" aria-pressed="false" title="Toggle theme">🌓</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" role="region" aria-labelledby="hero-title">
+        <div class="hero-left">
+          <div class="eyebrow" data-lang="ar">خدمات احترافية</div>
+          <div class="eyebrow" data-lang="en">Professional Services</div>
+
+          <h2 id="hero-title">
+            <span data-lang="ar">نحن نبني حلولاً تساعد أعمالك على النمو</span>
+            <span data-lang="en">We build solutions that help your business grow</span>
+          </h2>
+
+          <p class="lead">
+            <span data-lang="ar">شركتنا تقدم خدمات متكاملة في التصميم والتطوير والاستشارات — خبرة طويلة وفريق متخصص لضمان تنفيذ سريع وجودة عالية.</span>
+            <span data-lang="en">We offer end-to-end design, development and consulting — an experienced team ensuring fast delivery and high quality.</span>
+          </p>
+
+          <p style="margin:0 0 12px">
+            <a class="cta" href="#contact"><span data-lang="ar">اطلب عرض سعر</span><span data-lang="en">Get a Quote</span></a>
+          </p>
+
+          <div id="services" aria-label="Services" style="margin-top:18px">
+            <div class="services">
+              <article class="card" aria-labelledby="s1">
+                <div class="service-title" id="s1"><span data-lang="ar">تصميم واجهات المستخدم</span><span data-lang="en">UI / UX Design</span></div>
+                <p class="service-desc"><span data-lang="ar">تصاميم بسيطة وعملية وتجربة مستخدم مُحسّنة لرفع التفاعل.</span><span data-lang="en">Simple, practical designs and optimized UX to boost engagement.</span></p>
+              </article>
+
+              <article class="card" aria-labelledby="s2">
+                <div class="service-title" id="s2"><span data-lang="ar">تطوير ويب و تطبيقات</span><span data-lang="en">Web & App Development</span></div>
+                <p class="service-desc"><span data-lang="ar">تطبيقات متجاوبة وسريعة باستخدام أحدث التقنيات.</span><span data-lang="en">Responsive, high-performance apps built with modern tech.</span></p>
+              </article>
+
+              <article class="card" aria-labelledby="s3">
+                <div class="service-title" id="s3"><span data-lang="ar">استشارات تقنية</span><span data-lang="en">Technical Consulting</span></div>
+                <p class="service-desc"><span data-lang="ar">تحليل بنّاء وخطط تنفيذ لتحويل الفكرة لمنتج ناجح.</span><span data-lang="en">Actionable analysis and roadmaps to turn ideas into successful products.</span></p>
+              </article>
+
+              <article class="card" aria-labelledby="s4">
+                <div class="service-title" id="s4"><span data-lang="ar">دعم وصيانة</span><span data-lang="en">Support & Maintenance</span></div>
+                <p class="service-desc"><span data-lang="ar">خدمات دعم مستمرة للحفاظ على أفضل أداء للمنتج.</span><span data-lang="en">Ongoing support to keep your product at peak performance.</span></p>
+              </article>
+            </div>
+          </div>
+
+        </div>
+
+        <aside class="hero-right" aria-label="Contact form">
+          <div class="contact-card card">
+            <div style="font-weight:800;margin-bottom:8px"><span data-lang="ar">تواصل معنا</span><span data-lang="en">Contact Us</span></div>
+
+            <p class="small"><strong><span data-lang="ar">العنوان:</span><span data-lang="en">Address:</span></strong> <span data-lang="ar">مدينتك، شارعك</span><span data-lang="en">Your City, Your Street</span></p>
+            <p class="small"><strong><span data-lang="ar">الهاتف:</span><span data-lang="en">Phone:</span></strong> <span data-lang="ar">+216 12 345 678</span><span data-lang="en">+216 12 345 678</span></p>
+            <p class="small" style="margin-bottom:12px"><strong><span data-lang="ar">البريد:</span><span data-lang="en">Email:</span></strong> <span data-lang="ar">info@yourcompany.com</span><span data-lang="en">info@yourcompany.com</span></p>
+
+            <form id="contact" onsubmit="handleSubmit(event)" aria-labelledby="contact-form-title">
+              <h4 id="contact-form-title" style="margin-top:0"><span data-lang="ar">أرسل لنا رسالة</span><span data-lang="en">Send us a message</span></h4>
+
+              <label for="name"><span data-lang="ar">الاسم</span><span data-lang="en">Name</span></label>
+              <input id="name" name="name" required aria-required="true" placeholder="" data-placeholder-ar="الاسم" data-placeholder-en="Name">
+
+              <label for="contactinfo"><span data-lang="ar">الهاتف أو البريد</span><span data-lang="en">Phone or Email</span></label>
+              <input id="contactinfo" name="contact" required aria-required="true" placeholder="" data-placeholder-ar="الهاتف أو البريد" data-placeholder-en="Phone or Email">
+
+              <label for="message"><span data-lang="ar">الرسالة</span><span data-lang="en">Message</span></label>
+              <textarea id="message" name="message" rows="4" placeholder="" data-placeholder-ar="نص الرسالة" data-placeholder-en="Your message"></textarea>
+
+              <div style="display:flex;gap:8px;margin-top:10px">
+                <button type="submit" class="cta" style="flex:1"><span data-lang="ar">أرسل</span><span data-lang="en">Send</span></button>
+                <a class="btn" href="tel:+21612345678" style="flex:1;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(6,95,212,0.08);">📞 <span style="margin-inline-start:8px"><span data-lang="ar">اتصل الآن</span><span data-lang="en">Call Now</span></span></a>
+              </div>
+
+              <p id="msg" role="status" aria-live="polite" class="small" style="margin-top:10px;color:var(--accent);display:none"></p>
+            </form>
+
+            <noscript class="small" style="color:var(--muted);margin-top:8px">JavaScript مطفّل — النموذج يعمل بعد، أو قم باستخدام البريد: info@yourcompany.com</noscript>
+
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" style="margin-top:18px;display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:260px" class="card">
+          <h3 style="margin-top:0"><span data-lang="ar">من نحن</span><span data-lang="en">About Us</span></h3>
+          <p class="small"><span data-lang="ar">شركتنا تقدّم حلول مبتكرة مع تركيز على الجودة وسرعة التسليم. نعمل مع مؤسسات ناشئة ومتوسطة لتحويل الأفكار لمنتجات قابلة للسوق.</span><span data-lang="en">We deliver innovative solutions focused on quality and fast delivery. We work with startups and SMEs to turn ideas into market-ready products.</span></p>
+        </div>
+
+        <div style="width:300px;min-width:220px" class="card">
+          <h4 style="margin-top:0"><span data-lang="ar">قيمنا</span><span data-lang="en">Our Values</span></h4>
+          <ul class="small">
+            <li><span data-lang="ar">الشفافية</span><span data-lang="en">Transparency</span></li>
+            <li><span data-lang="ar">الالتزام بالمواعيد</span><span data-lang="en">Delivery Reliability</span></li>
+            <li><span data-lang="ar">الابتكار</span><span data-lang="en">Innovation</span></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> <span data-lang="ar">اسم شركتك</span><span data-lang="en">Your Company</span> — <span data-lang="ar">جميع الحقوق محفوظة</span><span data-lang="en">All rights reserved</span>
+    </footer>
+  </div>
+
+  <script>
+    /* =========== JavaScript: robust, accessible language & theme toggle + form handler =========== */
+    (function(){
+      const LANG_KEY = 'site_lang';
+      const THEME_KEY = 'site_theme';
+
+      // helpers
+      const qs = s => document.querySelector(s);
+      const qsa = s => Array.from(document.querySelectorAll(s));
+
+      function setLang(lang){
+        localStorage.setItem(LANG_KEY, lang);
+        document.documentElement.lang = (lang === 'en') ? 'en' : 'ar';
+        document.documentElement.dir = (lang === 'en') ? 'ltr' : 'rtl';
+
+        // show/hide by data-lang
+        qsa('[data-lang]').forEach(el=>{
+          el.style.display = el.getAttribute('data-lang') === lang ? '' : 'none';
+        });
+
+        // placeholders
+        qsa('input[data-placeholder-ar], textarea[data-placeholder-ar]').forEach(el=>{
+          el.placeholder = (lang==='en') ? el.getAttribute('data-placeholder-en') : el.getAttribute('data-placeholder-ar');
+        });
+
+        // update buttons state
+        qs('#btn-ar').setAttribute('aria-pressed', lang==='ar');
+        qs('#btn-en').setAttribute('aria-pressed', lang==='en');
+        qs('#btn-ar').classList.toggle('active', lang==='ar');
+        qs('#btn-en').classList.toggle('active', lang==='en');
+
+        // update title
+        const title = qs('title');
+        title.textContent = (lang==='en') ? title.getAttribute('data-lang-en') : title.getAttribute('data-lang-ar');
+      }
+
+      function applyTheme(theme){
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem(THEME_KEY, theme);
+        qs('#theme-btn').setAttribute('aria-pressed', theme==='dark');
+        qs('#theme-btn').classList.toggle('active', theme==='dark');
+      }
+
+      function toggleTheme(){
+        const cur = document.documentElement.getAttribute('data-theme') || 'light';
+        applyTheme(cur === 'dark' ? 'light' : 'dark');
+      }
+
+      // form submit (mock) - you should replace with actual API endpoint
+      function handleSubmit(e){
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value.trim();
+        const contact = form.contact.value.trim();
+        const message = form.message.value.trim();
+        if(!name || !contact){
+          showMsg('Please fill required fields.', 'error');
+          return;
+        }
+
+        // simulate sending (replace with fetch to your server)
+        showMsg((getLang()==='ar')? 'تم إرسال طلبك — شكرًا! سنتواصل معك قريبًا.' : 'Your request has been sent — thank you! We will contact you soon.', 'success');
+        form.reset();
+      }
+
+      function showMsg(text, type){
+        const el = qs('#msg');
+        el.style.display = '';
+        el.style.color = (type==='error') ? '#e11d48' : 'var(--accent)';
+        el.textContent = text;
+        setTimeout(()=>{el.style.display='none';}, 5000);
+      }
+
+      function getLang(){
+        return localStorage.getItem(LANG_KEY) || (navigator.language && /^en/i.test(navigator.language) ? 'en' : 'ar');
+      }
+
+      // init
+      (function init(){
+        // load language
+        const savedLang = localStorage.getItem(LANG_KEY);
+        const browserLang = (navigator.language || navigator.userLanguage || 'ar');
+        const prefer = savedLang || (/^en/i.test(browserLang) ? 'en' : 'ar');
+        setLang(prefer);
+
+        // load theme
+        const savedTheme = localStorage.getItem(THEME_KEY) || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(savedTheme);
+
+        // attach events
+        qs('#btn-ar').addEventListener('click', ()=>setLang('ar'));
+        qs('#btn-en').addEventListener('click', ()=>setLang('en'));
+        qs('#theme-btn').addEventListener('click', toggleTheme);
+
+        qs('#contact').addEventListener('submit', handleSubmit);
+
+        // keyboard accessible: Enter on language buttons
+        [qs('#btn-ar'), qs('#btn-en'), qs('#theme-btn')].forEach(btn=>{
+          btn.addEventListener('keyup', (ev)=>{ if(ev.key==='Enter' || ev.key===' ') btn.click(); });
+        });
+
+        // update year
+        qs('#year').textContent = new Date().getFullYear();
+      })();
+
+    })();
+  </script>
+
+  <!--
+    التغييرات والتحسينات التي طبقت:
+    1. أصلحت طريقة عرض النصوص المتعددة اللغات وجعلت التكامل أفضل عبر data-lang وحفظ التفضيلات في localStorage.
+    2. أضفت زر تبديل الوضع الداكن/الفاتح مع حفظ التفضيل ودعم prefers-color-scheme.
+    3. حسّنت الـ HTML لتكون أكثر سماتية (semantic) وقابلة للوصول (aria, role, labels).
+    4. حسّنت CSS لتصميم أنيق ومحترف مع انتقالات بسيطة وتحسين التباين.
+    5. جعلت نموذج الاتصال آمنًا وذو رسائل حالة (aria-live) مع رسالة نجاح/خطأ (نمطي).
+    6. أضفت تعليقات داخلية مع اقتراحات لربط النموذج بخادم حقيقي (fetch أو خدمة بريدية).
+
+    إذا تريد: أضع ملف index.html جاهز للتحميل مباشرة كـ ZIP، أو أربطه تلقائيًا بمستودعك في GitHub (أرشدك خطوة بخطوة).
+  -->
+</body>
+</html>
