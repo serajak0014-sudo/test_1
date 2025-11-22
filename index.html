@@ -1,307 +1,200 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title data-lang-en="Welcome — Your Company" data-lang-ar="مرحباً بكم — شركتي">مرحباً بكم — شركتي</title>
-  <meta name="description" data-lang-ar="موقع رسمي لعرض خدمات شركتك: تصميم، تطوير، واستشارات تقنية" data-lang-en="Official site showcasing your company's services: design, development and consulting"> 
-  <meta name="author" content="Your Company">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اسم شركتك | الحلول المتكاملة</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  <style>
-    :root{
-      --bg:#f7f8fb; --card:#ffffff; --accent:#065fd4; --accent-2:#00a3ff; --muted:#6b7280;
-      --radius:14px; --maxw:1200px; --text:#0f1724;
-    }
-    [data-theme="dark"]{
-      --bg:#071025; --card:#071729; --accent:#60a5fa; --accent-2:#3b82f6; --muted:#9fb3cc; --text:#e6f0ff;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;background:var(--bg);color:var(--text);
-      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-      padding:32px;display:flex;justify-content:center;
-    }
+    <style>
+        /* تخصيصات إضافية */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        /* تنسيق الهيرو (الواجهة الرئيسية) */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/1600x900/?business,office');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-weight: 700;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
 
-    .container{width:100%;max-width:var(--maxw);}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
+        /* تنسيق الكروت والخدمات */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .icon-box {
+            font-size: 40px;
+            color: #0d6efd;
+            margin-bottom: 20px;
+        }
 
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{
-      width:56px;height:56px;border-radius:12px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      display:flex;align-items:center;justify-content:center;
-      color:white;font-weight:700;font-size:22px;
-    }
+        /* تنسيق نموذج الاتصال */
+        .contact-section {
+            background-color: white;
+            padding: 80px 0;
+        }
 
-    nav{display:flex;gap:16px}
-    nav a{text-decoration:none;color:var(--muted);font-weight:600;}
-
-    .controls{display:flex;gap:8px}
-    .btn{
-      padding:8px 12px;border-radius:10px;border:none;
-      cursor:pointer;background:#e2e8f0;font-weight:600;
-    }
-    .btn.active{background:var(--accent);color:white;}
-
-    .hero{
-      background:linear-gradient(180deg, rgba(6,95,212,0.08), transparent);
-      padding:28px;border-radius:16px;display:flex;gap:28px;flex-wrap:wrap;
-    }
-    .hero-left{flex:1;min-width:320px}
-    .hero-right{width:380px;min-width:300px}
-
-    .cta{
-      background:var(--accent);color:white;padding:12px 18px;
-      border-radius:10px;text-decoration:none;font-weight:700;
-      display:inline-block;
-    }
-    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px;}
-    .card{
-      background:var(--card);padding:16px;border-radius:12px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.08);
-    }
-
-    input,textarea{
-      width:100%;padding:10px;margin-bottom:10px;
-      border-radius:10px;border:1px solid rgba(255,255,255,0.2);
-      background:rgba(255,255,255,0.05);color:var(--text);
-    }
-    textarea{min-height:120px}
-
-    footer{text-align:center;margin-top:30px;color:var(--muted)}
-  </style>
+        footer {
+            background-color: #212529;
+            color: #aaa;
+            padding: 30px 0;
+            text-align: center;
+        }
+    </style>
 </head>
-
 <body>
-<div class="container">
 
-<header>
-  <div class="brand">
-    <div class="logo">gg</div>
-    <div>
-      <div data-lang="ar">اسم شركتك</div>
-      <div data-lang="en">Your Company</div>
-    </div>
-  </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">اسم شركتك</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">خدماتنا</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">اتصل بنا</a></li>
+                </ul>
+                <a href="#contact" class="btn btn-primary rounded-pill px-4">اطلب عرض سعر</a>
+            </div>
+        </div>
+    </nav>
 
-  <div class="controls">
-    <button id="btn-ar" class="btn active">العربية</button>
-    <button id="btn-en" class="btn">English</button>
-    <button id="theme-btn" class="btn">🌓</button>
-  </div>
-</header>
-<section class="hero">
-  <div class="hero-left">
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">نحن نبني مستقبل أعمالك</h1>
+            <p class="lead mb-4">نقدم أفضل الحلول الاستشارية والتقنية لمساعدة شركتك على النمو والازدهار.</p>
+            <a href="#services" class="btn btn-light btn-lg rounded-pill px-5 me-2">استكشف خدماتنا</a>
+            <a href="#contact" class="btn btn-outline-light btn-lg rounded-pill px-5">تواصل معنا</a>
+        </div>
+    </section>
 
-    <h2>
-      <span data-lang="ar">نحن نبني حلولاً تساعد أعمالك على النمو</span>
-      <span data-lang="en" style="display:none">We build solutions that help your business grow</span>
-    </h2>
+    <section id="services" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">ماذا نقدم لكم؟</h2>
+                <p class="text-muted">مجموعة متكاملة من الخدمات المصممة لنجاحكم</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card service-card p-4 h-100"> 
+                      <div class="card-body text-center">
+                            <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                            <h4 class="card-title fw-bold">تطوير الأعمال</h4>
+                            <p class="card-text text-muted">نساعدك في وضع استراتيجيات نمو فعالة لزيادة الأرباح وتحسين الأداء.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card p-4 h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
+                            <h4 class="card-title fw-bold">الحلول التقنية</h4>
+                            <p class="card-text text-muted">تصميم وتطوير مواقع وتطبيقات تواكب أحدث التقنيات العالمية.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card service-card p-4 h-100">
+                        <div class="card-body text-center">
+                            <div class="icon-box"><i class="fas fa-bullhorn"></i></div>
+                            <h4 class="card-title fw-bold">التسويق الرقمي</h4>
+                            <p class="card-text text-muted">إدارة الحملات الإعلانية والتواجد على منصات التواصل الاجتماعي.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <p>
-      <span data-lang="ar">نقدم خدمات احترافية في التصميم والتطوير والاستشارات التقنية.</span>
-      <span data-lang="en" style="display:none">We provide professional services in design, development and technical consulting.</span>
-    </p>
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="https://source.unsplash.com/600x400/?meeting" class="img-fluid rounded shadow" alt="فريق العمل">
+                </div>
+                <div class="col-md-6 mt-4 mt-md-0">
+                    <h2 class="fw-bold mb-3">لماذا تختارنا؟</h2>
+                    <p class="text-muted">نحن شركة رائدة نمتلك خبرة تمتد لسنوات في تقديم الحلول المبتكرة. فريقنا يتكون من خبراء شغوفين بتحقيق النتائج.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> دعم فني متواصل 24/7</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> جودة عالية وأسعار تنافسية</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> التزام تام بالمواعيد</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <a class="cta" href="#contact">
-      <span data-lang="ar">اطلب عرض سعر</span>
-      <span data-lang="en" style="display:none">Get a Quote</span>
-    </a>
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">تواصل معنا</h2>
+                <p class="text-muted">نحن هنا للإجابة على استفساراتكم</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="الاسم" aria-label="الاسم">
+                            </div>
+                            <div class="col">
+                                <input type="email" class="form-control" placeholder="البريد الإلكتروني" aria-label="البريد">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="اكتب رسالتك هنا..."></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">إرسال الرسالة</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="services" id="services">
+    <footer>
+        <div class="container"> 
+          <p class="mb-0">جميع الحقوق محفوظة &copy; 2025 اسم شركتك</p>
+            <div class="mt-2">
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
 
-      <div class="card">
-        <h3 class="service-title">
-          <span data-lang="ar">تصميم واجهات المستخدم</span>
-          <span data-lang="en" style="display:none">UI / UX Design</span>
-        </h3>
-        <p class="service-desc">
-          <span data-lang="ar">تصاميم احترافية وتجربة مستخدم محسّنة.</span>
-          <span data-lang="en" style="display:none">Professional designs and enhanced user experience.</span>
-        </p>
-      </div>
-
-      <div class="card">
-        <h3 class="service-title">
-          <span data-lang="ar">تطوير مواقع وتطبيقات</span>
-          <span data-lang="en" style="display:none">Web & App Development</span>
-        </h3>
-        <p class="service-desc">
-          <span data-lang="ar">تطوير سريع باستخدام أحدث التقنيات.</span>
-          <span data-lang="en" style="display:none">Fast development using modern technologies.</span>
-        </p>
-      </div>
-
-      <div class="card">
-        <h3 class="service-title">
-          <span data-lang="ar">استشارات تقنية</span>
-          <span data-lang="en" style="display:none">Technical Consulting</span>
-        </h3>
-        <p class="service-desc">
-          <span data-lang="ar">تحليل وخطط تنفيذ للمشاريع الرقمية.</span>
-          <span data-lang="en" style="display:none">Analysis and implementation planning for digital projects.</span>
-        </p>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="card" id="contact">
-      <h3 style="margin-top:0">
-        <span data-lang="ar">تواصل معنا</span>
-        <span data-lang="en" style="display:none">Contact Us</span>
-      </h3>
-
-      <input id="name" placeholder="الاسم" data-placeholder-ar="الاسم" data-placeholder-en="Name">
-      <input id="contactinfo" placeholder="الهاتف أو البريد" data-placeholder-ar="الهاتف أو البريد" data-placeholder-en="Phone or Email">
-      <textarea id="message" placeholder="نص الرسالة" data-placeholder-ar="نص الرسالة" data-placeholder-en="Message"></textarea>
-
-      <button class="cta" style="width:100%;margin-top:10px">
-        <span data-lang="ar">إرسال</span>
-        <span data-lang="en" style="display:none">Send</span>
-      </button>
-
-      <div style="text-align:center;margin-top:10px">
-        <a href="tel:+21612345678" style="color:white;text-decoration:none;font-size:22px">📞</a>
-      </div>
-
-      <p id="msg" style="color:var(--accent);display:none;margin-top:10px;font-size:14px"></p>
-    </div>
-  </div>
-</section>
-
-
-<section id="about" style="margin-top:24px">
-  <div class="card" style="padding:20px">
-    <h3>
-      <span data-lang="ar">من نحن</span>
-      <span data-lang="en" style="display:none">About Us</span>
-    </h3>
-
-    <p class="about-text">
-      <span data-lang="ar">نحن شركة تقدم حلولاً تقنية مبتكرة في مجال الويب والتطبيقات.</span>
-      <span data-lang="en" style="display:none">We are a company that provides innovative web and app solutions.</span>
-    </p>
-  </div>
-</section>
-<script>
-  (function(){
-    const LANG_KEY = 'site_lang';
-    const THEME_KEY = 'site_theme';
-
-    const qs = s => document.querySelector(s);
-    const qsa = s => Array.from(document.querySelectorAll(s));
-
-    function setLang(lang){
-      localStorage.setItem(LANG_KEY, lang);
-      document.documentElement.lang = lang === 'en' ? 'en' : 'ar';
-      document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
-
-      qsa('[data-lang]').forEach(el=>{
-        el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
-      });
-
-      qsa('input[data-placeholder-ar], textarea[data-placeholder-ar]').forEach(el=>{
-        el.placeholder = (lang === 'en') ? el.getAttribute('data-placeholder-en') : el.getAttribute('data-placeholder-ar');
-      });
-
-      qs('#btn-ar').setAttribute('aria-pressed', lang === 'ar');
-      qs('#btn-en').setAttribute('aria-pressed', lang === 'en');
-      qs('#btn-ar').classList.toggle('active', lang === 'ar');
-      qs('#btn-en').classList.toggle('active', lang === 'en');
-    }
-
-    function applyTheme(theme){
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem(THEME_KEY, theme);
-      qs('#theme-btn').setAttribute('aria-pressed', theme === 'dark');
-      qs('#theme-btn').classList.toggle('active', theme === 'dark');
-    }
-
-    function toggleTheme(){
-      const cur = document.documentElement.getAttribute('data-theme') || 'light';
-      applyTheme(cur === 'dark' ? 'light' : 'dark');
-    }
-
-    function getLang(){
-      return localStorage.getItem(LANG_KEY) || (navigator.language && /^en/i.test(navigator.language) ? 'en' : 'ar');
-    }
-
-    function showMsg(text, type){
-      const el = qs('#msg');
-      el.style.display = '';
-      el.style.color = (type === 'error') ? '#e11d48' : 'var(--accent)';
-      el.textContent = text;
-      setTimeout(()=>{ el.style.display = 'none'; }, 4500);
-    }
-
-    function handleSubmit(e){
-      e.preventDefault();
-      // since the contact area is a div (for simplified markup), grab inputs by id
-      const name = qs('#name').value.trim();
-      const contact = qs('#contactinfo').value.trim();
-      const message = qs('#message').value.trim();
-
-      if(!name || !contact){
-        showMsg(getLang() === 'ar' ? 'يرجى تعبئة الحقول المطلوبة.' : 'Please fill required fields.', 'error');
-        return;
-      }
-
-      // هنا: استبدل block below بطلب fetch إلى الـ API الخاص بك لإرسال البيانات
-      // مثال (مُعلّق):
-      // fetch('/api/contact', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name,contact,message})})
-      //   .then(r=>r.json()).then(()=> showMsg(...))
-
-      // محاكاة نجاح إرسال
-      showMsg(getLang() === 'ar' ? 'تم إرسال طلبك — شكرًا! سنتواصل معك قريبًا.' : 'Your request has been sent — thank you! We will contact you soon.', 'success');
-      qs('#name').value = '';
-      qs('#contactinfo').value = '';
-      qs('#message').value = '';
-    }
-
-    // initialization
-    (function init(){
-      const savedLang = localStorage.getItem(LANG_KEY);
-      const browserLang = (navigator.language || navigator.userLanguage || 'ar');
-      const prefer = savedLang || (/^en/i.test(browserLang) ? 'en' : 'ar');
-      setLang(prefer);
-
-      const savedTheme = localStorage.getItem(THEME_KEY) || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      applyTheme(savedTheme);
-
-      qs('#btn-ar').addEventListener('click', ()=> setLang('ar'));
-      qs('#btn-en').addEventListener('click', ()=> setLang('en'));
-      qs('#theme-btn').addEventListener('click', toggleTheme);
-
-      // form handler: if your contact is a form element (or wrapper), adapt accordingly
-      // here we attach to the Send button inside .hero-right card
-      [...document.querySelectorAll('.hero-right .cta')].forEach(btn=>{
-        btn.addEventListener('click', handleSubmit);
-      });
-
-      // keyboard accessibility
-      [qs('#btn-ar'), qs('#btn-en'), qs('#theme-btn')].forEach(btn=>{
-        if(!btn) return;
-        btn.addEventListener('keyup', (ev)=>{ if(ev.key === 'Enter' || ev.key === ' ') btn.click(); });
-      });
-
-      // set year
-      const y = new Date().getFullYear();
-      const yearEl = qs('#year');
-      if(yearEl) yearEl.textContent = y;
-    })();
-
-  })();
-</script>
-
-<footer style="margin-top:28px">
-  <div style="text-align:center;color:var(--muted)">
-    — <span id="year"></span> ©
-    <span data-lang="ar">اسم شركتك</span><span data-lang="en" style="display:none">Your Company</span>
-  </div>
-</footer>
-
-</div> <!-- .container -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
