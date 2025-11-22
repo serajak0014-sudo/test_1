@@ -1,199 +1,347 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>  gggg | الحلول المتكاملة</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>gggg | الحلول المتكاملة</title>
+  <meta name="description" content="حلول متكاملة في التصميم، التطوير، والاستشارات التقنية.">
+  <meta name="theme-color" content="#065fd4">
 
-    <style>
-        /* تخصيصات إضافية */
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f8f9fa;
-        }
-        
-        /* تنسيق الهيرو (الواجهة الرئيسية) */
-        .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/1600x900/?business,office');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 150px 0;
-            text-align: center;
-        }
-        
-        .hero-title {
-            font-weight: 700;
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
+  <!-- Fonts & Icons & Bootstrap RTL -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        /* تنسيق الكروت والخدمات */
-        .service-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            border-radius: 15px;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .icon-box {
-            font-size: 40px;
-            color: #0d6efd;
-            margin-bottom: 20px;
-        }
+  <!-- Favicon (temporary: using the uploaded image path) -->
+  <!-- IMPORTANT: change this to assets/logo.png after uploading logo to your repo -->
+  <link rel="icon" href="/mnt/data/cc89abac-1c52-471f-8206-b6f61a3dd8e6.png">
 
-        /* تنسيق نموذج الاتصال */
-        .contact-section {
-            background-color: white;
-            padding: 80px 0;
-        }
+  <style>
+    :root{
+      --accent:#0d6efd;
+      --bg:#f8f9fa;
+      --text:#222;
+      --card:#fff;
+      --muted:#6c757d;
+      --radius:14px;
+    }
+    [data-theme="dark"]{
+      --bg:#071025;
+      --card:#071729;
+      --text:#e6f0ff;
+      --muted:#9fb3cc;
+      --accent:#60a5fa;
+    }
 
-        footer {
-            background-color: #212529;
-            color: #aaa;
-            padding: 30px 0;
-            text-align: center;
-        }
-    </style>
+    html,body{font-family:'Cairo', sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;}
+    a { text-decoration:none; }
+    /* NAV */
+    .navbar-brand img.site-logo{ width:48px; height:48px; object-fit:contain; border-radius:8px; margin-inline-start:8px; }
+    .navbar { padding:0.6rem 0; }
+
+    /* HERO */
+    .hero-section{
+      position:relative;
+      background: linear-gradient(rgba(3,10,27,0.55), rgba(3,10,27,0.35)), url('https://source.unsplash.com/1600x900/?business,office') center/cover no-repeat;
+      color:#fff; padding:120px 0; text-align:center;
+      border-radius: var(--radius);
+      margin-bottom:24px;
+    }
+    .hero-title{ font-weight:700; font-size:2.6rem; letter-spacing:0.6px; }
+    .hero-lead{ font-size:1.05rem; color:rgba(255,255,255,0.9); margin-bottom:20px; }
+
+    /* SERVICES */
+    .service-card{ border-radius:12px; transition:transform .28s ease, box-shadow .28s ease; border:0; }
+    .service-card:hover{ transform:translateY(-8px); box-shadow:0 18px 40px rgba(2,6,23,0.08); }
+    .icon-box{ font-size:36px; color:var(--accent); margin-bottom:12px; }
+
+    /* CONTACT */
+    .contact-section{ background:var(--card); padding:60px 0; border-radius:12px; box-shadow:0 6px 30px rgba(2,6,23,0.04); }
+    .form-control{ border-radius:10px; }
+
+    /* FOOTER */
+    footer{ background:#212529; color:#aaa; padding:28px 0; border-radius:8px; margin-top:24px; }
+
+    /* CONTROLS */
+    .control-btn{ border-radius:999px; padding:6px 10px; border:1px solid rgba(0,0,0,0.06); background:transparent; color:inherit; }
+    .control-btn.active{ background:var(--accent); color:white; border-color:transparent; box-shadow:0 6px 20px rgba(13,110,253,0.14); }
+
+    /* back to top */
+    #backTop{ position:fixed; bottom:22px; left:22px; display:none; z-index:1200; border-radius:50%; padding:10px 12px; box-shadow:0 8px 30px rgba(2,6,23,0.12); background:var(--accent); color:#fff; }
+
+    /* small screens */
+    @media (max-width:768px){
+      .hero-title{ font-size:1.8rem; }
+      .hero-section{ padding:80px 0; }
+      .navbar .collapse { margin-top:6px; }
+      .navbar-brand { display:flex; align-items:center; gap:8px; }
+    }
+  </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#"> gg </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">خدماتنا</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">اتصل بنا</a></li>
-                </ul>
-                <a href="#contact" class="btn btn-primary rounded-pill px-4">اطلب عرض سعر</a>
-            </div>
-        </div>
-    </nav>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" aria-label="Main navigation">
+    <div class="container">
+      <!-- LOGO: uses your uploaded image path; change to assets/logo.png after upload -->
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="/mnt/data/cc89abac-1c52-471f-8206-b6f61a3dd8e6.png" alt="شعار الشركة" class="site-logo">
+        <span class="fw-bold ms-2" data-lang="ar">gg</span>
+        <span class="fw-bold ms-2" data-lang="en" style="display:none">gg</span>
+      </a>
 
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">نحن نبني مستقبل أعمالك</h1>
-            <p class="lead mb-4">نقدم أفضل الحلول الاستشارية والتقنية لمساعدة شركتك على النمو والازدهار.</p>
-            <a href="#services" class="btn btn-light btn-lg rounded-pill px-5 me-2">استكشف خدماتنا</a>
-            <a href="#contact" class="btn btn-outline-light btn-lg rounded-pill px-5">تواصل معنا</a>
-        </div>
-    </section>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="تبديل التنقل">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <section id="services" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">ماذا نقدم لكم؟</h2>
-                <p class="text-muted">مجموعة متكاملة من الخدمات المصممة لنجاحكم</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card service-card p-4 h-100"> 
-                      <div class="card-body text-center">
-                            <div class="icon-box"><i class="fas fa-chart-line"></i></div>
-                            <h4 class="card-title fw-bold">تطوير الأعمال</h4>
-                            <p class="card-text text-muted">نساعدك في وضع استراتيجيات نمو فعالة لزيادة الأرباح وتحسين الأداء.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card service-card p-4 h-100">
-                        <div class="card-body text-center">
-                            <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
-                            <h4 class="card-title fw-bold">الحلول التقنية</h4>
-                            <p class="card-text text-muted">تصميم وتطوير مواقع وتطبيقات تواكب أحدث التقنيات العالمية.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card service-card p-4 h-100">
-                        <div class="card-body text-center">
-                            <div class="icon-box"><i class="fas fa-bullhorn"></i></div>
-                            <h4 class="card-title fw-bold">التسويق الرقمي</h4>
-                            <p class="card-text text-muted">إدارة الحملات الإعلانية والتواجد على منصات التواصل الاجتماعي.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">خدماتنا</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">اتصل بنا</a></li>
+        </ul>
 
-    <section id="about" class="py-5 bg-light">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <img src="https://source.unsplash.com/600x400/?meeting" class="img-fluid rounded shadow" alt="فريق العمل">
-                </div>
-                <div class="col-md-6 mt-4 mt-md-0">
-                    <h2 class="fw-bold mb-3">لماذا تختارنا؟</h2>
-                    <p class="text-muted">نحن شركة رائدة نمتلك خبرة تمتد لسنوات في تقديم الحلول المبتكرة. فريقنا يتكون من خبراء شغوفين بتحقيق النتائج.</p>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> دعم فني متواصل 24/7</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> جودة عالية وأسعار تنافسية</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> التزام تام بالمواعيد</li>
-                    </ul>
-                </div>
-            </div>
+        <!-- Language & Theme Controls -->
+        <div class="d-flex align-items-center gap-2">
+          <button id="btn-ar" class="control-btn active" title="العربية" aria-pressed="true">العربية</button>
+          <button id="btn-en" class="control-btn" title="English" aria-pressed="false">EN</button>
+          <button id="theme-btn" class="control-btn" title="تبديل الوضع">🌓</button>
+          <a href="#contact" class="btn btn-primary rounded-pill px-4">اطلب عرض سعر</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </nav>
 
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">تواصل معنا</h2>
-                <p class="text-muted">نحن هنا للإجابة على استفساراتكم</p>
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="hero-title">
+        <span data-lang="ar">نحن نبني مستقبل أعمالك</span>
+        <span data-lang="en" style="display:none">We build your business future</span>
+      </h1>
+      <p class="hero-lead">
+        <span data-lang="ar">نقدم أفضل الحلول الاستشارية والتقنية لمساعدة شركتك على النمو والازدهار.</span>
+        <span data-lang="en" style="display:none">We offer top consulting and technical solutions to grow your company.</span>
+      </p>
+      <div class="d-flex justify-content-center gap-2 flex-wrap">
+        <a href="#services" class="btn btn-light btn-lg rounded-pill px-4">استكشف خدماتنا</a>
+        <a href="#contact" class="btn btn-outline-light btn-lg rounded-pill px-4">تواصل معنا</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">ماذا نقدم لكم؟</h2>
+        <p class="text-muted">مجموعة متكاملة من الخدمات المصممة لنجاحكم</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card service-card p-4 h-100 text-center">
+            <div class="card-body">
+              <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+              <h4 class="card-title fw-bold">تطوير الأعمال</h4>
+              <p class="card-text text-muted">نساعدك في وضع استراتيجيات نمو فعالة لزيادة الأرباح وتحسين الأداء.</p>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <form>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="الاسم" aria-label="الاسم">
-                            </div>
-                            <div class="col">
-                                <input type="email" class="form-control" placeholder="البريد الإلكتروني" aria-label="البريد">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" rows="5" placeholder="اكتب رسالتك هنا..."></textarea>
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg">إرسال الرسالة</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
 
-    <footer>
-        <div class="container"> 
-          <p class="mb-0">جميع الحقوق محفوظة &copy; 2025 gg </p>
-            <div class="mt-2">
-                <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+        <div class="col-md-4">
+          <div class="card service-card p-4 h-100 text-center">
+            <div class="card-body">
+              <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
+              <h4 class="card-title fw-bold">الحلول التقنية</h4>
+              <p class="card-text text-muted">تصميم وتطوير مواقع وتطبيقات تواكب أحدث التقنيات العالمية.</p>
             </div>
+          </div>
         </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <div class="col-md-4">
+          <div class="card service-card p-4 h-100 text-center">
+            <div class="card-body">
+              <div class="icon-box"><i class="fas fa-bullhorn"></i></div>
+              <h4 class="card-title fw-bold">التسويق الرقمي</h4>
+              <p class="card-text text-muted">إدارة الحملات الإعلانية والتواجد على منصات التواصل الاجتماعي.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-5 bg-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <img src="https://source.unsplash.com/600x400/?meeting" class="img-fluid rounded shadow" alt="فريق العمل">
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0">
+          <h2 class="fw-bold mb-3"><span data-lang="ar">لماذا تختارنا؟</span><span data-lang="en" style="display:none">Why choose us?</span></h2>
+          <p class="text-muted">
+            <span data-lang="ar">نحن شركة رائدة نمتلك خبرة تمتد لسنوات في تقديم الحلول المبتكرة. فريقنا يتكون من خبراء شغوفين بتحقيق النتائج.</span>
+            <span data-lang="en" style="display:none">We are a leading company with years of experience delivering innovative solutions.</span>
+          </p>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><span data-lang="ar">دعم فني متواصل 24/7</span><span data-lang="en" style="display:none">24/7 support</span></li>
+            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><span data-lang="ar">جودة عالية وأسعار تنافسية</span><span data-lang="en" style="display:none">High quality and competitive prices</span></li>
+            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><span data-lang="ar">التزام تام بالمواعيد</span><span data-lang="en" style="display:none">On-time delivery</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="fw-bold"><span data-lang="ar">تواصل معنا</span><span data-lang="en" style="display:none">Contact us</span></h2>
+        <p class="text-muted"><span data-lang="ar">نحن هنا للإجابة على استفساراتكم</span><span data-lang="en" style="display:none">We are here to answer your queries</span></p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <form id="contactForm" novalidate>
+            <div class="row mb-3">
+              <div class="col">
+                <input type="text" id="name" class="form-control" placeholder="الاسم" aria-label="الاسم" required>
+              </div>
+              <div class="col">
+                <input type="email" id="email" class="form-control" placeholder="البريد الإلكتروني" aria-label="البريد" required>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <textarea id="message" class="form-control" rows="6" placeholder="اكتب رسالتك هنا..." required></textarea>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg">إرسال الرسالة</button>
+            </div>
+
+            <div id="formMsg" class="mt-3" role="status" aria-live="polite" style="display:none;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p class="mb-0">جميع الحقوق محفوظة &copy; <span id="site-year"></span> gg</p>
+      <div class="mt-2">
+        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="backTop" aria-label="رجوع للأعلى" title="رجوع للأعلى"><i class="fas fa-chevron-up"></i></button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    /* ============================
+       Language toggle & theme toggle
+       ============================ */
+    (function(){
+      const LANG_KEY = 'site_lang';
+      const THEME_KEY = 'site_theme';
+
+      const btnAr = document.getElementById('btn-ar');
+      const btnEn = document.getElementById('btn-en');
+      const themeBtn = document.getElementById('theme-btn');
+
+      function setLang(lang){
+        localStorage.setItem(LANG_KEY, lang);
+        document.documentElement.lang = lang === 'en' ? 'en' : 'ar';
+        document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+        document.querySelectorAll('[data-lang]').forEach(el=>{
+          el.style.display = el.getAttribute('data-lang') === lang ? '' : 'none';
+        });
+        // update control states
+        btnAr.classList.toggle('active', lang==='ar');
+        btnEn.classList.toggle('active', lang==='en');
+        btnAr.setAttribute('aria-pressed', lang==='ar');
+        btnEn.setAttribute('aria-pressed', lang==='en');
+      }
+
+      function applyTheme(theme){
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem(THEME_KEY, theme);
+        themeBtn.classList.toggle('active', theme === 'dark');
+      }
+
+      function init(){
+        const savedLang = localStorage.getItem(LANG_KEY) || (navigator.language && /^en/i.test(navigator.language) ? 'en' : 'ar');
+        setLang(savedLang);
+
+        const savedTheme = localStorage.getItem(THEME_KEY) || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(savedTheme);
+
+        btnAr.addEventListener('click', ()=> setLang('ar'));
+        btnEn.addEventListener('click', ()=> setLang('en'));
+        themeBtn.addEventListener('click', ()=> applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+      }
+      init();
+    })();
+
+    /* ============================
+       Contact form (simple client-side validation + mock send)
+       ============================ */
+    (function(){
+      const form = document.getElementById('contactForm');
+      const msg = document.getElementById('formMsg');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        msg.style.display = 'none';
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        const lang = localStorage.getItem('site_lang') || (navigator.language && /^en/i.test(navigator.language) ? 'en' : 'ar');
+
+        if(!name || !email || !message){
+          msg.style.display = '';
+          msg.style.color = '#d63384';
+          msg.textContent = lang === 'ar' ? 'يرجى تعبئة جميع الحقول.' : 'Please fill in all required fields.';
+          return;
+        }
+
+        // هنا يمكنك استبدال الكود التالي بطلب fetch إلى سيرفرك (API)
+        // محاكاة إرسال:
+        msg.style.display = '';
+        msg.style.color = '#198754';
+        msg.textContent = lang === 'ar' ? 'تم إرسال رسالتك — شكرًا! سنتواصل معك قريبًا.' : 'Your message has been sent — thank you!';
+        form.reset();
+        setTimeout(()=> msg.style.display = 'none', 5000);
+      });
+    })();
+
+    /* ============================
+       Back to top and small UX helpers
+       ============================ */
+    (function(){
+      const back = document.getElementById('backTop');
+      window.addEventListener('scroll', ()=>{
+        if(window.scrollY > 300) back.style.display = 'block';
+        else back.style.display = 'none';
+      });
+      back.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+      // set year in footer
+      document.getElementById('site-year').textContent = new Date().getFullYear();
+    })();
+  </script>
 </body>
 </html>
