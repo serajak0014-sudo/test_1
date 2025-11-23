@@ -3,106 +3,216 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>الأنعام</title>
+  <title>الأنعام | الحلول المتكاملة</title>
   <meta name="description" content="حلول متكاملة في التصميم، التطوير، والاستشارات التقنية." />
   <meta name="theme-color" content="#065fd4" />
 
-  <!-- SEO / Social -->
-  <meta property="og:site_name" content="الأنعام" />
-  <meta property="og:title" content="حلول متكاملة — الأنعام" />
-  <meta property="og:description" content="حلول متكاملة في التصميم، التطوير، والاستشارات التقنية." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/assets/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Preconnect fonts -->
+  <!-- Fonts & Bootstrap RTL -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Fonts & Icons & Bootstrap RTL -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  <!-- Favicon: ضع شعارك في assets/logo.png قبل النشر -->
   <link rel="icon" href="/assets/logo.png" />
 
   <style>
+    /*
+      تصميم ألوان مرن وواضح للقراءة في الوضع الفاتح والداكن.
+      المتغيرات التالية تجعل من السهل ضبط الهوية البصرية لاحقًا.
+    */
     :root{
-      --accent:#0d6efd;
-      --bg:#f8f9fa;
-      --text:#222;
-      --card:#fff;
-      --muted:#6c757d;
-      --radius:14px;
+      /* brand */
+      --accent: #0d6efd;            /* primary brand color (light mode baseline) */
+      --accent-600: #0b5ed7;
+      --accent-contrast: #ffffff;   /* text color on accent buttons */
+
+      /* neutrals (light) */
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #0f1724;              /* body text */
+      --heading: #071133;           /* headings */
+      --muted: #6c757d;            /* secondary text */
+      --border: rgba(15,23,36,0.06);
+
+      /* surfaces */
+      --glass: rgba(255,255,255,0.6);
+
+      /* small UI */
+      --radius: 14px;
+      --shadow-soft: 0 10px 30px rgba(10,18,30,0.06);
     }
+
+    /* Dark theme overrides: ensure high contrast for text & UI
+       We picked slightly cooler accent in dark to pop on deep background.
+       Check contrast: headings/text >= AA/AAA depending on size.
+    */
     [data-theme="dark"]{
-      --bg:#071025;
-      --card:#071729;
-      --text:#e6f0ff;
-      --muted:#9fb3cc;
-      --accent:#60a5fa;
+      --accent: #4ea8ff;
+      --accent-600: #2f7fd2;
+      --accent-contrast: #071229;
+
+      --bg: #031224;            /* deep navy */
+      --card: #071827;          /* elevated card surface */
+      --text: #e6f0ff;         /* main readable text */
+      --heading: #ffffff;      /* headings */
+      --muted: #9fb3cc;        /* secondary text */
+      --border: rgba(255,255,255,0.04);
+      --glass: rgba(10,18,30,0.35);
+
+      --shadow-soft: 0 12px 40px rgba(2,8,20,0.5);
     }
+
+    /* Global */
     html,body{
-      font-family:'Cairo', sans-serif;
+      font-family:'Cairo',sans-serif;
       background:var(--bg);
       color:var(--text);
-      scroll-behavior:smooth;
+      margin:0;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
+      transition: background-color .35s ease, color .35s ease;
     }
-    a{ text-decoration:none; }
+    a { color:var(--accent); transition: color .25s; text-decoration:none; }
+    a:hover { color:var(--accent-600); text-decoration:underline; }
+
     /* NAV */
-    .navbar-brand img.site-logo{ width:48px; height:48px; object-fit:contain; border-radius:8px; margin-inline-start:8px; }
-    .navbar { padding:0.6rem 0; }
+    .navbar{
+      padding:0.6rem 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-bottom: 1px solid var(--border);
+      transition: background-color .35s, border-color .35s;
+      backdrop-filter: blur(6px);
+    }
+    .navbar-brand img.site-logo{ width:52px; height:52px; object-fit:contain; border-radius:10px; }
 
     /* HERO */
     .hero-section{
       position:relative;
-      background: linear-gradient(rgba(3,10,27,0.55), rgba(3,10,27,0.35)), url('https://source.unsplash.com/1600x900/?business,office') center/cover no-repeat;
-      color:#fff; padding:120px 0; text-align:center;
-      border-radius: var(--radius);
-      margin-bottom:24px;
+      color:var(--card); /* will be overridden by inner text colors */
+      padding:100px 0;
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      margin-bottom:22px;
+      box-shadow: var(--shadow-soft);
+      background-color: transparent;
     }
-    .hero-title{ font-weight:700; font-size:2.6rem; letter-spacing:0.6px; }
-    .hero-lead{ font-size:1.05rem; color:rgba(255,255,255,0.9); margin-bottom:20px; }
+
+    .hero-bg{
+      position:absolute; inset:0; z-index:0;
+      background-image: url('https://source.unsplash.com/1600x900/?business,office');
+      background-size:cover; background-position:center;
+      filter: saturate(0.95) contrast(0.92);
+      transform: scale(1.03);
+    }
+    /* overlay uses the theme colors' alpha for consistency */
+    .hero-overlay{
+      position:absolute; inset:0; z-index:1;
+      background: linear-gradient(180deg, rgba(3,10,27,0.55), rgba(3,10,27,0.35));
+      mix-blend-mode: multiply;
+    }
+    .hero-content{ position:relative; z-index:2; text-align:center; color:var(--card); padding:48px 18px; }
+
+    .hero-title{
+      font-weight:700;
+      font-size:2.6rem;
+      letter-spacing:0.4px;
+      color:var(--card);
+      margin-bottom:10px;
+      transition: color .25s;
+    }
+    .hero-lead{
+      font-size:1.05rem;
+      color: rgba(255,255,255,0.95);
+      margin-bottom:18px;
+    }
+    .hero-cta .btn{
+      min-width:180px;
+      font-weight:600;
+      border-radius:999px;
+      padding:12px 20px;
+      box-shadow: 0 8px 26px rgba(8,22,48,0.12);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .hero-cta .btn:active{ transform: translateY(1px); }
 
     /* SERVICES */
-    .service-card{ border-radius:12px; transition:transform .28s ease, box-shadow .28s ease; border:0; background:var(--card); }
-    .service-card:hover{ transform:translateY(-8px); box-shadow:0 18px 40px rgba(2,6,23,0.08); }
+    .service-card{
+      border-radius:12px;
+      transition: transform .28s ease, box-shadow .28s ease, background-color .25s;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.01));
+      padding:28px;
+    }
+    .service-card:hover{ transform: translateY(-8px); box-shadow: var(--shadow-soft); }
     .icon-box{ font-size:36px; color:var(--accent); margin-bottom:12px; }
 
     /* CONTACT */
-    .contact-section{ background:var(--card); padding:60px 0; border-radius:12px; box-shadow:0 6px 30px rgba(2,6,23,0.04); }
-    .form-control{ border-radius:10px; }
+    .contact-section{
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.02));
+      padding:56px 0; border-radius:12px; box-shadow:var(--shadow-soft); border:1px solid var(--border);
+    }
+    .form-control{ border-radius:10px; border:1px solid var(--border); background:transparent; color:var(--text); }
+
+    /* Buttons (consistent brand) */
+    .btn-primary{
+      background: linear-gradient(180deg, var(--accent), var(--accent-600));
+      color: var(--accent-contrast);
+      border: none;
+      box-shadow: 0 8px 22px rgba(11,56,120,0.12);
+      transition: transform .12s, box-shadow .12s, opacity .12s;
+    }
+    .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 18px 40px rgba(11,56,120,0.14); }
+
+    /* Accessible focus styles */
+    :focus-visible{
+      outline: 3px solid color-mix(in srgb, var(--accent) 20%, transparent); /* subtle */
+      outline-offset: 3px;
+    }
+    button.control-btn{
+      border-radius:999px; padding:6px 10px; border:1px solid var(--border); background:transparent; color:var(--text);
+      transition: background-color .2s, color .2s, box-shadow .2s;
+    }
+    button.control-btn.active{ background:var(--accent); color:var(--accent-contrast); border-color:transparent; box-shadow:0 8px 26px rgba(10,55,130,0.12); }
 
     /* FOOTER */
-    footer{ background:#212529; color:#aaa; padding:28px 0; border-radius:8px; margin-top:24px; }
+    footer{
+      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.08));
+      color:var(--muted);
+      padding:28px 0;
+      border-radius:8px;
+      margin-top:24px;
+      border-top:1px solid var(--border);
+    }
 
-    /* CONTROLS */
-    .control-btn{ border-radius:999px; padding:6px 10px; border:1px solid rgba(0,0,0,0.06); background:transparent; color:inherit; }
-    .control-btn.active{ background:var(--accent); color:white; border-color:transparent; box-shadow:0 6px 20px rgba(13,110,253,0.14); }
+    /* Back to top */
+    #backTop{
+      position:fixed; bottom:24px; left:24px; display:none; z-index:1200; border-radius:50%; padding:10px 12px;
+      box-shadow: 0 12px 36px rgba(8,20,40,0.16);
+      background: var(--accent); color: var(--accent-contrast); border:none;
+      transition: transform .18s;
+    }
+    #backTop:hover{ transform: translateY(-4px); }
 
-    /* back to top */
-    #backTop{ position:fixed; bottom:22px; left:22px; display:none; z-index:1200; border-radius:50%; padding:10px 12px; box-shadow:0 8px 30px rgba(2,6,23,0.12); background:var(--accent); color:#fff; border:none; }
-
-    /* small screens */
+    /* Responsive tweaks */
     @media (max-width:768px){
-      .hero-title{ font-size:1.8rem; }
-      .hero-section{ padding:80px 0; }
+      .hero-title{ font-size:1.9rem; }
+      .hero-section{ padding:64px 0; }
       .navbar .collapse { margin-top:6px; }
-      .navbar-brand { display:flex; align-items:center; gap:8px; }
     }
   </style>
 </head>
 <body>
+
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" aria-label="Main navigation" role="navigation">
+  <nav class="navbar navbar-expand-lg sticky-top" aria-label="Main navigation" role="navigation">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#">
+      <a class="navbar-brand d-flex align-items-center" href="#" aria-label="الانتقال إلى الصفحة الرئيسية">
         <img src="/assets/logo.png" alt="شعار الأنعام" class="site-logo">
-        <span class="fw-bold ms-2" data-lang="ar">الأنعام</span>
-        <span class="fw-bold ms-2" data-lang="en" style="display:none">Al-Anam</span>
+        <div style="display:flex;flex-direction:column;margin-inline-start:10px;line-height:1;">
+          <span style="font-weight:700;color:var(--heading);font-size:1.05rem">الأنعام</span>
+          <small style="color:var(--muted);font-size:0.8rem">الحلول المتكاملة</small>
+        </div>
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="تبديل التنقل">
@@ -117,11 +227,11 @@
           <li class="nav-item"><a class="nav-link" href="#contact">اتصل بنا</a></li>
         </ul>
 
-        <!-- Language & Theme Controls -->
+        <!-- Controls -->
         <div class="d-flex align-items-center gap-2">
-          <button id="btn-ar" class="control-btn active" title="العربية" aria-pressed="true" aria-label="تبديل إلى العربية">العربية</button>
-          <button id="btn-en" class="control-btn" title="English" aria-pressed="false" aria-label="Switch to English">EN</button>
-          <button id="theme-btn" class="control-btn" title="تبديل الوضع" aria-label="تبديل الوضع">🌓</button>
+          <button id="btn-ar" class="control-btn active" title="العربية" aria-pressed="true">العربية</button>
+          <button id="btn-en" class="control-btn" title="English" aria-pressed="false">EN</button>
+          <button id="theme-btn" class="control-btn" title="تبديل الوضع" aria-pressed="false" aria-label="تبديل الوضع">🌓</button>
           <a href="#contact" class="btn btn-primary rounded-pill px-4">اطلب عرض سعر</a>
         </div>
       </div>
@@ -130,18 +240,22 @@
 
   <!-- HERO -->
   <section class="hero-section" role="region" aria-label="قسم المقدمة">
-    <div class="container">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="container hero-content">
       <h1 class="hero-title">
         <span data-lang="ar">نحن نبني مستقبل أعمالك</span>
         <span data-lang="en" style="display:none">We build your business future</span>
       </h1>
       <p class="hero-lead">
-        <span data-lang="ar">نقدم أفضل الحلول الاستشارية والتقنية لمساعدة شركتك على النمو والازدهار.</span>
-        <span data-lang="en" style="display:none">We offer top consulting and technical solutions to grow your company.</span>
+        <span data-lang="ar">حلول استشارية وتقنية متكاملة لرفع أداء شركتك وتحقيق نمو مستدام.</span>
+        <span data-lang="en" style="display:none">End-to-end consulting and technical solutions to scale your business.</span>
       </p>
-      <div class="d-flex justify-content-center gap-2 flex-wrap">
+
+      <div class="hero-cta d-flex justify-content-center gap-2 flex-wrap">
         <a href="#services" class="btn btn-light btn-lg rounded-pill px-4">استكشف خدماتنا</a>
-        <a href="#contact" class="btn btn-outline-light btn-lg rounded-pill px-4">تواصل معنا</a>
+        <a href="#contact" class="btn btn-primary btn-lg rounded-pill px-4">تواصل معنا</a>
       </div>
     </div>
   </section>
@@ -150,37 +264,37 @@
   <section id="services" class="py-5" aria-labelledby="services-heading">
     <div class="container">
       <div class="text-center mb-5">
-        <h2 id="services-heading" class="fw-bold">ماذا نقدم لكم؟</h2>
+        <h2 id="services-heading" class="fw-bold" style="color:var(--heading)">ماذا نقدم لكم؟</h2>
         <p class="text-muted">مجموعة متكاملة من الخدمات المصممة لنجاحكم</p>
       </div>
 
       <div class="row g-4">
         <div class="col-md-4">
-          <article class="card service-card p-4 h-100 text-center" aria-labelledby="s1">
-            <div class="card-body">
+          <article class="service-card h-100 text-center" aria-labelledby="s1">
+            <div>
               <div class="icon-box" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
-              <h4 id="s1" class="card-title fw-bold">تطوير الأعمال</h4>
-              <p class="card-text text-muted">نساعدك في وضع استراتيجيات نمو فعالة لزيادة الأرباح وتحسين الأداء.</p>
+              <h4 id="s1" class="fw-bold" style="color:var(--heading)">تطوير الأعمال</h4>
+              <p class="text-muted">نساعدك في وضع استراتيجيات نمو فعالة لزيادة الأرباح وتحسين الأداء.</p>
             </div>
           </article>
         </div>
 
         <div class="col-md-4">
-          <article class="card service-card p-4 h-100 text-center" aria-labelledby="s2">
-            <div class="card-body">
+          <article class="service-card h-100 text-center" aria-labelledby="s2">
+            <div>
               <div class="icon-box" aria-hidden="true"><i class="fas fa-laptop-code"></i></div>
-              <h4 id="s2" class="card-title fw-bold">الحلول التقنية</h4>
-              <p class="card-text text-muted">تصميم وتطوير مواقع وتطبيقات تواكب أحدث التقنيات العالمية.</p>
+              <h4 id="s2" class="fw-bold" style="color:var(--heading)">الحلول التقنية</h4>
+              <p class="text-muted">تصميم وتطوير مواقع وتطبيقات تواكب أحدث التقنيات العالمية.</p>
             </div>
           </article>
         </div>
 
         <div class="col-md-4">
-          <article class="card service-card p-4 h-100 text-center" aria-labelledby="s3">
-            <div class="card-body">
+          <article class="service-card h-100 text-center" aria-labelledby="s3">
+            <div>
               <div class="icon-box" aria-hidden="true"><i class="fas fa-bullhorn"></i></div>
-              <h4 id="s3" class="card-title fw-bold">التسويق الرقمي</h4>
-              <p class="card-text text-muted">إدارة الحملات الإعلانية والتواجد على منصات التواصل الاجتماعي.</p>
+              <h4 id="s3" class="fw-bold" style="color:var(--heading)">التسويق الرقمي</h4>
+              <p class="text-muted">إدارة الحملات الإعلانية والتواجد على منصات التواصل الاجتماعي.</p>
             </div>
           </article>
         </div>
@@ -189,22 +303,22 @@
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="py-5 bg-light" aria-labelledby="about-heading">
+  <section id="about" class="py-5" aria-labelledby="about-heading">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-6">
-          <img src="https://source.unsplash.com/600x400/?meeting" class="img-fluid rounded shadow" alt="فريق العمل" loading="lazy">
+          <img src="https://source.unsplash.com/600x400/?team,meeting" class="img-fluid rounded shadow" alt="فريق العمل" loading="lazy">
         </div>
         <div class="col-md-6 mt-4 mt-md-0">
-          <h2 id="about-heading" class="fw-bold mb-3"><span data-lang="ar">لماذا تختارنا؟</span><span data-lang="en" style="display:none">Why choose us?</span></h2>
+          <h2 id="about-heading" class="fw-bold mb-3" style="color:var(--heading)"><span data-lang="ar">لماذا تختارنا؟</span><span data-lang="en" style="display:none">Why choose us?</span></h2>
           <p class="text-muted">
-            <span data-lang="ar">نحن شركة رائدة نمتلك خبرة تمتد لسنوات في تقديم الحلول المبتكرة. فريقنا يتكون من خبراء شغوفين بتحقيق النتائج.</span>
-            <span data-lang="en" style="display:none">We are a leading company with years of experience delivering innovative solutions.</span>
+            <span data-lang="ar">فريق من الخبراء يقدم حلولاً عملية ومبتكرة مع التزام كامل بالمواعيد وجودة تنفيذ عالية.</span>
+            <span data-lang="en" style="display:none">A team of experts delivering practical and innovative solutions with on-time delivery and high quality.</span>
           </p>
           <ul class="list-unstyled">
-            <li class="mb-2"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i><span data-lang="ar">دعم فني متواصل 24/7</span><span data-lang="en" style="display:none">24/7 support</span></li>
-            <li class="mb-2"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i><span data-lang="ar">جودة عالية وأسعار تنافسية</span><span data-lang="en" style="display:none">High quality and competitive prices</span></li>
-            <li class="mb-2"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i><span data-lang="ar">التزام تام بالمواعيد</span><span data-lang="en" style="display:none">On-time delivery</span></li>
+            <li class="mb-2"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i><span data-lang="ar">دعم فني متواصل 24/7</span></li>
+            <li class="mb-2"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i><span data-lang="ar">جودة عالية وأسعار تنافسية</span></li>
+            <li class="mb-2"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i><span data-lang="ar">التزام تام بالمواعيد</span></li>
           </ul>
         </div>
       </div>
@@ -215,7 +329,7 @@
   <section id="contact" class="contact-section" aria-labelledby="contact-heading">
     <div class="container">
       <div class="text-center mb-4">
-        <h2 id="contact-heading" class="fw-bold"><span data-lang="ar">تواصل معنا</span><span data-lang="en" style="display:none">Contact us</span></h2>
+        <h2 id="contact-heading" class="fw-bold" style="color:var(--heading)"><span data-lang="ar">تواصل معنا</span><span data-lang="en" style="display:none">Contact us</span></h2>
         <p class="text-muted"><span data-lang="ar">نحن هنا للإجابة على استفساراتكم</span><span data-lang="en" style="display:none">We are here to answer your queries</span></p>
       </div>
 
@@ -238,7 +352,6 @@
               <textarea id="message" class="form-control" rows="6" placeholder="اكتب رسالتك هنا..." required></textarea>
             </div>
 
-            <!-- honeypot field للحد من السبام (يُترك مخفياً للمستخدمين الطبيعيين) -->
             <input type="text" id="phone_hp" name="phone_hp" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="d-grid">
@@ -254,9 +367,11 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="container">
-      <p class="mb-0">جميع الحقوق محفوظة &copy; <span id="site-year"></span> الأنعام</p>
-      <div class="mt-2">
+    <div class="container d-flex justify-content-between align-items-center flex-column flex-md-row gap-3">
+      <div>
+        <p class="mb-0" style="color:var(--muted)">جميع الحقوق محفوظة &copy; <span id="site-year"></span> الأنعام</p>
+      </div>
+      <div>
         <a href="#" class="text-white me-3" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         <a href="#" class="text-white me-3" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         <a href="#" class="text-white" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -267,10 +382,10 @@
   <!-- Back to top -->
   <button id="backTop" aria-label="رجوع للأعلى" title="رجوع للأعلى"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
 
-  <!-- Bootstrap JS (defer to avoid render-blocking) -->
+  <!-- Bootstrap JS -->
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Inline script: language/theme toggle + form handling -->
+  <!-- Scripts: language/theme toggle + form handling -->
   <script defer>
     (function(){
       const LANG_KEY = 'site_lang';
@@ -280,6 +395,7 @@
       const btnEn = document.getElementById('btn-en');
       const themeBtn = document.getElementById('theme-btn');
 
+      // set language visibility
       function setLang(lang){
         localStorage.setItem(LANG_KEY, lang);
         document.documentElement.lang = lang === 'en' ? 'en' : 'ar';
@@ -293,10 +409,19 @@
         btnEn.setAttribute('aria-pressed', lang==='en');
       }
 
+      // apply visual theme (light/dark)
       function applyTheme(theme){
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem(THEME_KEY, theme);
         themeBtn.classList.toggle('active', theme === 'dark');
+        themeBtn.setAttribute('aria-pressed', theme === 'dark');
+        // extra: adapt hero overlay for better legibility in light theme
+        const overlay = document.querySelector('.hero-overlay');
+        if(theme === 'dark'){
+          overlay.style.background = 'linear-gradient(180deg, rgba(3,10,27,0.7), rgba(3,10,27,0.45))';
+        } else {
+          overlay.style.background = 'linear-gradient(180deg, rgba(3,10,27,0.45), rgba(3,10,27,0.24))';
+        }
       }
 
       function init(){
@@ -313,7 +438,7 @@
       init();
     })();
 
-    // Contact form: client-side validation + POST example
+    // Contact form: client-side validation + mock send
     (function(){
       const form = document.getElementById('contactForm');
       const msg = document.getElementById('formMsg');
@@ -325,7 +450,6 @@
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
         const honeypot = document.getElementById('phone_hp').value.trim();
-
         const lang = localStorage.getItem('site_lang') || (navigator.language && /^en/i.test(navigator.language) ? 'en' : 'ar');
 
         if(!name || !email || !message){
@@ -343,14 +467,14 @@
           return;
         }
 
+        // هنا يمكنك استبدال المسار endpoint بمسار API حقيقي
         try{
           const res = await fetch('/api/contact', {
             method:'POST',
             headers:{ 'Content-Type':'application/json' },
             body: JSON.stringify({ name, email, message })
           });
-
-          if(res.ok){
+          if(res && res.ok){
             msg.style.display = '';
             msg.style.color = '#198754';
             msg.textContent = lang === 'ar' ? 'تم إرسال رسالتك — شكرًا! سنتواصل معك قريبًا.' : 'Your message has been sent — thank you!';
@@ -366,7 +490,7 @@
       });
     })();
 
-    // Back to top + UX helpers
+    // Back to top & small helpers
     (function(){
       const back = document.getElementById('backTop');
       window.addEventListener('scroll', ()=>{
