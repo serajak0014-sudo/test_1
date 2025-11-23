@@ -6,164 +6,54 @@
   <title>الأنعام | الحلول المتكاملة</title>
   <meta name="description" content="حلول متكاملة — منتجات وخدمات الأنعام." />
   <meta name="theme-color" content="#065fd4" />
-
-  <!-- Fonts & Bootstrap RTL -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
   <link rel="icon" href="/assets/logo.png" />
-
   <style>
-    /* ===========================
-       Brand & theme variables
-       =========================== */
-    :root{
-      --accent: #0d6efd;
-      --accent-600: #0b5ed7;
-      --accent-contrast: #ffffff;
-
-      --bg: #f7f9fc;
-      --card: #ffffff;
-      --text: #0f1724;
-      --heading: #071133;
-      --muted: #6c757d;
-      --border: rgba(15,23,36,0.06);
-
-      --radius: 14px;
-      --shadow-soft: 0 10px 30px rgba(10,18,30,0.06);
-
-      /* page width */
-      --page-max-width: 1280px; /* <-- increased width for product galleries */
-      --page-padding: 24px;
-    }
-
-    [data-theme="dark"]{
-      --accent: #4ea8ff;
-      --accent-600: #2f7fd2;
-      --accent-contrast: #071229;
-
-      --bg: #031224;
-      --card: #071827;
-      --text: #e6f0ff;
-      --heading: #ffffff;
-      --muted: #9fb3cc;
-      --border: rgba(255,255,255,0.04);
-      --shadow-soft: 0 12px 40px rgba(2,8,20,0.5);
-    }
-
-    /* ===========================
-       Global styles
-       =========================== */
-    html,body{
-      font-family:'Cairo',sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      margin:0;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      transition: background-color .35s ease, color .35s ease;
-    }
-    a{ color:var(--accent); text-decoration:none; transition: color .2s; }
-    a:hover{ color:var(--accent-600); text-decoration:underline; }
-    img{ max-width:100%; display:block; }
-
-    /* Custom wider container */
-    .container {
-      max-width: var(--page-max-width);
-      padding-left: var(--page-padding);
-      padding-right: var(--page-padding);
-      margin-left:auto;
-      margin-right:auto;
-    }
-
-    /* NAV */
-    .navbar{ padding:0.8rem 0; border-bottom: 1px solid var(--border); background:transparent; }
+    :root{ --accent:#0d6efd; --bg:#f7f9fc; --card:#fff; --text:#0f1724; --heading:#071133; --muted:#6c757d; --border:rgba(15,23,36,0.06); --radius:14px; --page-max-width:1280px; --page-padding:24px; }
+    [data-theme="dark"]{ --accent:#4ea8ff; --bg:#031224; --card:#071827; --text:#e6f0ff; --heading:#fff; --muted:#9fb3cc; --border:rgba(255,255,255,0.04); }
+    html,body{ font-family:'Cairo',sans-serif; background:var(--bg); color:var(--text); margin:0; transition:background-color .35s, color .35s; }
+    .container{ max-width:var(--page-max-width); padding:0 var(--page-padding); margin:0 auto; }
+    .navbar{ padding:.8rem 0; border-bottom:1px solid var(--border); background:transparent; }
     .site-logo{ width:64px; height:64px; object-fit:contain; border-radius:10px; }
-
-    /* HERO: larger to host big banner or promo image */
-    .hero-section{ padding:120px 0 80px; border-radius: calc(var(--radius) + 4px); position:relative; overflow:hidden; }
-    .hero-bg{ position:absolute; inset:0; background-image: url('https://source.unsplash.com/2200x900/?office,technology'); background-size:cover; background-position:center; transform:scale(1.03); filter:contrast(.96) saturate(.95); z-index:0; }
-    .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(3,10,27,0.58), rgba(3,10,27,0.35)); z-index:1; }
+    .hero-section{ padding:120px 0 80px; position:relative; overflow:hidden; border-radius:calc(var(--radius)+4px); }
+    .hero-bg{ position:absolute; inset:0; background-image:url('https://source.unsplash.com/2200x900/?office,technology'); background-size:cover; background-position:center; z-index:0; filter:contrast(.96) saturate(.95); transform:scale(1.03); }
+    .hero-overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(3,10,27,0.58), rgba(3,10,27,0.35)); z-index:1; }
     .hero-content{ position:relative; z-index:2; text-align:center; color:var(--card); }
-
-    .hero-title{ font-weight:700; font-size:3.2rem; margin-bottom:12px; color:var(--card); }
-    .hero-lead{ font-size:1.15rem; color:rgba(255,255,255,0.95); margin-bottom:22px; }
-
-    /* Controls (language/theme) */
-    .control-btn{ border-radius:999px; padding:8px 12px; border:1px solid var(--border); background:transparent; color:var(--text); }
-    .control-btn.active{ background:var(--accent); color:var(--accent-contrast); border-color:transparent; box-shadow:0 8px 24px rgba(10,55,130,0.12); }
-
-    /* SERVICES */
-    .service-card{ border-radius:12px; padding:28px; background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow-soft); }
-    .icon-box{ font-size:36px; color:var(--accent); margin-bottom:10px; }
-
-    /* PRODUCTS / GALLERY */
-    .products-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px; flex-wrap:wrap; }
-    .products-grid{
-      display:grid;
-      gap:20px;
-      grid-template-columns: repeat(4, 1fr); /* large screens: 4 columns */
-    }
-    @media (max-width:1100px){ .products-grid{ grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width:820px){ .products-grid{ grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width:520px){ .products-grid{ grid-template-columns: 1fr; } }
-
-    .product-card{
-      border-radius:12px; overflow:hidden; background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow-soft);
-      display:flex; flex-direction:column; min-height:100%;
-    }
-    .product-media{ position:relative; padding-top:62%; background:#eee; overflow:hidden; }
+    .hero-title{ font-weight:700; font-size:3.2rem; margin-bottom:12px; }
+    .hero-lead{ font-size:1.15rem; margin-bottom:22px; color:rgba(255,255,255,0.95); }
+    .control-btn{ border-radius:999px; padding:8px 12px; border:1px solid var(--border); background:transparent; }
+    .control-btn.active{ background:var(--accent); color:#fff; border-color:transparent; }
+    .products-grid{ display:grid; gap:20px; grid-template-columns:repeat(4,1fr); }
+    @media(max-width:1100px){ .products-grid{ grid-template-columns:repeat(3,1fr); } }
+    @media(max-width:820px){ .products-grid{ grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:520px){ .products-grid{ grid-template-columns:1fr; } }
+    .product-card{ border-radius:12px; overflow:hidden; background:var(--card); border:1px solid var(--border); display:flex; flex-direction:column; }
+    .product-media{ padding-top:62%; position:relative; }
     .product-media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-    .product-body{ padding:16px; display:flex; flex-direction:column; gap:10px; flex:1; }
-    .product-title{ font-weight:700; color:var(--heading); margin:0; }
-    .product-desc{ color:var(--muted); font-size:0.95rem; margin:0; flex:1; }
-    .product-meta{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; }
-    .price{ font-weight:700; color:var(--accent); }
-    .product-actions{ display:flex; gap:10px; margin-top:12px; }
-
+    .product-body{ padding:16px; display:flex; flex-direction:column; gap:10px; }
     .btn-outline-card{ border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 12px; border-radius:10px; }
-
-    /* Gallery mini thumbnails */
-    .gallery-strip{ display:flex; gap:10px; overflow:auto; padding:10px 0; }
-    .gallery-thumb{ width:120px; height:80px; flex:0 0 auto; border-radius:8px; overflow:hidden; border:1px solid var(--border); }
-    .gallery-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
-
-    /* Lightbox (simple) */
-    .lightbox{
-      position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); z-index:2000; padding:28px;
-    }
+    .lightbox{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); z-index:2000; padding:28px; }
     .lightbox.active{ display:flex; }
-    .lightbox img{ max-width:1200px; max-height:80vh; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,0.6); }
-
-    /* FOOTER */
+    .lightbox img{ max-width:1200px; max-height:80vh; border-radius:10px; }
     footer{ margin-top:36px; padding:28px 0; color:var(--muted); border-top:1px solid var(--border); }
-
-    /* Back to top */
-    #backTop{ position:fixed; bottom:24px; left:24px; display:none; z-index:1200; border-radius:50%; padding:10px 12px; background:var(--accent); color:var(--accent-contrast); border:none; box-shadow:0 12px 36px rgba(8,20,40,0.16); }
-
-    /* accessibility focus */
+    #backTop{ position:fixed; bottom:24px; left:24px; display:none; z-index:1200; border-radius:50%; padding:10px 12px; background:var(--accent); color:#fff; border:none; }
     :focus-visible{ outline:3px solid color-mix(in srgb, var(--accent) 20%, transparent); outline-offset:3px; }
-
-    /* small screens hero */
-    @media (max-width:768px){
-      .hero-title{ font-size:1.9rem; }
-      .hero-section{ padding:64px 0 40px; }
-    }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- NAV -->
   <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#" aria-label="الانتقال إلى الصفحة الرئيسية">
         <img src="/assets/logo.png" alt="شعار الأنعام" class="site-logo">
         <div style="display:flex;flex-direction:column;margin-inline-start:12px;">
-          <span style="font-weight:700;color:var(--heading);font-size:1.1rem">الأنعام</span>
-          <small style="color:var(--muted);font-size:0.85rem">الحلول المتكاملة</small>
+          <span class="fw-bold" style="color:var(--heading);font-size:1.1rem" data-i18n="brand.name">الأنعام</span>
+          <small style="color:var(--muted);font-size:.85rem" data-i18n="brand.tagline">الحلول المتكاملة</small>
         </div>
       </a>
 
@@ -173,17 +63,17 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
-          <li class="nav-item"><a class="nav-link" href="#services">خدماتنا</a></li>
-          <li class="nav-item"><a class="nav-link" href="#products">منتجاتنا</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">اتصل بنا</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#" data-i18n="nav.home">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services" data-i18n="nav.services">خدماتنا</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products" data-i18n="nav.products">منتجاتنا</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav.contact">اتصل بنا</a></li>
         </ul>
 
         <div class="d-flex align-items-center gap-2">
-          <button id="btn-ar" class="control-btn active" title="العربية" aria-pressed="true">العربية</button>
-          <button id="btn-en" class="control-btn" title="English" aria-pressed="false">EN</button>
+          <button id="btn-ar" class="control-btn active" title="العربية" aria-pressed="true" data-lang-switch="ar">العربية</button>
+          <button id="btn-en" class="control-btn" title="English" aria-pressed="false" data-lang-switch="en">EN</button>
           <button id="theme-btn" class="control-btn" title="تبديل الوضع" aria-pressed="false">🌓</button>
-          <a href="#contact" class="btn btn-primary rounded-pill px-4">اطلب عرض سعر</a>
+          <a href="#contact" class="btn btn-primary rounded-pill px-4" data-i18n="cta.requestQuote">اطلب عرض سعر</a>
         </div>
       </div>
     </div>
@@ -194,11 +84,11 @@
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="container hero-content">
-      <h1 class="hero-title"><span data-lang="ar">نحن نبني مستقبل أعمالك</span><span data-lang="en" style="display:none">We build your business future</span></h1>
-      <p class="hero-lead"><span data-lang="ar">حلول استشارية وتقنية متكاملة لرفع أداء شركتك وتحقيق نمو مستدام.</span><span data-lang="en" style="display:none">End-to-end consulting and technical solutions to scale your business.</span></p>
+      <h1 class="hero-title" data-i18n="hero.title">نحن نبني مستقبل أعمالك</h1>
+      <p class="hero-lead" data-i18n="hero.lead">حلول استشارية وتقنية متكاملة لرفع أداء شركتك وتحقيق نمو مستدام.</p>
       <div class="d-flex justify-content-center gap-2 hero-cta flex-wrap">
-        <a href="#services" class="btn btn-light btn-lg rounded-pill px-4">استكشف خدماتنا</a>
-        <a href="#products" class="btn btn-primary btn-lg rounded-pill px-4">تصفح المنتجات</a>
+        <a href="#services" class="btn btn-light btn-lg rounded-pill px-4" data-i18n="cta.explore">استكشف خدماتنا</a>
+        <a href="#products" class="btn btn-primary btn-lg rounded-pill px-4" data-i18n="cta.products">تصفح المنتجات</a>
       </div>
     </div>
   </section>
@@ -207,32 +97,32 @@
   <section id="services" class="py-5" aria-labelledby="services-heading">
     <div class="container">
       <div class="text-center mb-5">
-        <h2 id="services-heading" class="fw-bold" style="color:var(--heading)">ماذا نقدم لكم؟</h2>
-        <p class="text-muted">مجموعة متكاملة من الخدمات المصممة لنجاحكم</p>
+        <h2 id="services-heading" class="fw-bold" style="color:var(--heading)" data-i18n="services.heading">ماذا نقدم لكم؟</h2>
+        <p class="text-muted" data-i18n="services.sub">مجموعة متكاملة من الخدمات المصممة لنجاحكم</p>
       </div>
 
       <div class="row g-4">
         <div class="col-md-4">
           <div class="service-card h-100 text-center">
             <div class="icon-box" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
-            <h4 class="fw-bold">تطوير الأعمال</h4>
-            <p class="text-muted">استراتيجيات نمو فعالة لتحسين الإيرادات والأداء.</p>
+            <h4 class="fw-bold" data-i18n="services.business">تطوير الأعمال</h4>
+            <p class="text-muted" data-i18n="services.businessDesc">استراتيجيات نمو فعالة لتحسين الإيرادات والأداء.</p>
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="service-card h-100 text-center">
             <div class="icon-box" aria-hidden="true"><i class="fas fa-laptop-code"></i></div>
-            <h4 class="fw-bold">الحلول التقنية</h4>
-            <p class="text-muted">تصميم وتطوير مواقع وتطبيقات تواكب أحدث التقنيات.</p>
+            <h4 class="fw-bold" data-i18n="services.tech">الحلول التقنية</h4>
+            <p class="text-muted" data-i18n="services.techDesc">تصميم وتطوير مواقع وتطبيقات تواكب أحدث التقنيات.</p>
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="service-card h-100 text-center">
             <div class="icon-box" aria-hidden="true"><i class="fas fa-bullhorn"></i></div>
-            <h4 class="fw-bold">التسويق الرقمي</h4>
-            <p class="text-muted">إدارة الحملات والإعلانات لتحقيق أقصى أثر رقمي.</p>
+            <h4 class="fw-bold" data-i18n="services.marketing">التسويق الرقمي</h4>
+            <p class="text-muted" data-i18n="services.marketingDesc">إدارة الحملات والإعلانات لتحقيق أقصى أثر رقمي.</p>
           </div>
         </div>
       </div>
@@ -242,105 +132,66 @@
   <!-- PRODUCTS -->
   <section id="products" class="py-5" aria-labelledby="products-heading">
     <div class="container">
-      <div class="products-header">
+      <div class="d-flex align-items-center justify-content-between mb-3 products-header">
         <div>
-          <h2 id="products-heading" class="fw-bold" style="color:var(--heading)">منتجاتنا</h2>
-          <p class="text-muted mb-0">قم بإضافة صور المنتج والأسعار هنا — الشبكة قابلة للتوسع.</p>
+          <h2 id="products-heading" class="fw-bold" style="color:var(--heading)" data-i18n="products.heading">منتجاتنا</h2>
+          <p class="text-muted mb-0" data-i18n="products.sub">قم بإضافة صور المنتج والأسعار هنا — الشبكة قابلة للتوسع.</p>
         </div>
 
-        <!-- مثال أدوات فرز/بحث (غير متصلة): يمكن توصيلها لاحقًا -->
         <div class="d-flex gap-2 align-items-center">
-          <input id="searchProducts" type="search" class="form-control" placeholder="ابحث عن منتج..." style="min-width:220px;">
+          <input id="searchProducts" type="search" class="form-control" placeholder="" data-i18n-placeholder="search.placeholder" style="min-width:220px;">
           <select id="filterCategory" class="form-select" style="min-width:180px;">
-            <option value="">كل الفئات</option>
-            <option value="dev">الحلول التقنية</option>
-            <option value="marketing">التسويق</option>
-            <option value="business">تطوير الأعمال</option>
+            <option value="" data-i18n="filter.all">كل الفئات</option>
+            <option value="dev" data-i18n="filter.dev">الحلول التقنية</option>
+            <option value="marketing" data-i18n="filter.marketing">التسويق</option>
+            <option value="business" data-i18n="filter.business">تطوير الأعمال</option>
           </select>
         </div>
       </div>
 
-      <!-- gallery thumbnails -->
       <div class="gallery-strip mb-3" aria-hidden="false">
-        <!-- استبدل الصور بمساراتك في /assets/products/... -->
         <div class="gallery-thumb"><img src="https://source.unsplash.com/400x300/?product,office" alt="صورة 1" loading="lazy" data-large="https://source.unsplash.com/1600x900/?product,office"></div>
         <div class="gallery-thumb"><img src="https://source.unsplash.com/400x300/?product,technology" alt="صورة 2" loading="lazy" data-large="https://source.unsplash.com/1600x900/?product,technology"></div>
         <div class="gallery-thumb"><img src="https://source.unsplash.com/400x300/?product,gadget" alt="صورة 3" loading="lazy" data-large="https://source.unsplash.com/1600x900/?product,gadget"></div>
         <div class="gallery-thumb"><img src="https://source.unsplash.com/400x300/?office,workspace" alt="صورة 4" loading="lazy" data-large="https://source.unsplash.com/1600x900/?office,workspace"></div>
       </div>
 
-      <!-- products grid -->
       <div id="productsGrid" class="products-grid">
-        <!-- مثال بطاقة منتج: انسخ/عدل هذه البطاقات لإضافة أكثر -->
         <article class="product-card" data-category="dev">
           <div class="product-media">
-            <img src="https://source.unsplash.com/800x600/?laptop,app" alt="منتج 1" loading="lazy" tabindex="0" data-large="https://source.unsplash.com/1600x1200/?laptop,app">
+            <img src="https://source.unsplash.com/800x600/?laptop,app" alt="" loading="lazy" tabindex="0" data-large="https://source.unsplash.com/1600x1200/?laptop,app">
           </div>
           <div class="product-body">
-            <h3 class="product-title">حل منصة إلكترونية</h3>
-            <p class="product-desc">بناء منصة إدارة أعمال متكاملة مع لوحة تحكم وتقارير مخصصة.</p>
+            <h3 class="product-title" data-i18n="prod1.title">حل منصة إلكترونية</h3>
+            <p class="product-desc" data-i18n="prod1.desc">بناء منصة إدارة أعمال متكاملة مع لوحة تحكم وتقارير مخصصة.</p>
             <div class="product-meta">
-              <div class="price">3,200 ر.س</div>
+              <div class="price" data-i18n="prod1.price">3,200 ر.س</div>
               <div class="product-actions">
-                <button class="btn btn-outline-card" type="button">تفاصيل</button>
-                <button class="btn btn-primary" type="button">اطلب الآن</button>
+                <button class="btn btn-outline-card" type="button" data-i18n="prod.details">تفاصيل</button>
+                <button class="btn btn-primary" type="button" data-i18n="prod.order">اطلب الآن</button>
               </div>
             </div>
           </div>
         </article>
 
+        <!-- بطاقة أخرى -->
         <article class="product-card" data-category="marketing">
           <div class="product-media">
-            <img src="https://source.unsplash.com/800x600/?marketing,ads" alt="منتج 2" loading="lazy" data-large="https://source.unsplash.com/1600x1200/?marketing,ads">
+            <img src="https://source.unsplash.com/800x600/?marketing,ads" alt="" loading="lazy" data-large="https://source.unsplash.com/1600x1200/?marketing,ads">
           </div>
           <div class="product-body">
-            <h3 class="product-title">خطة تسويق رقمي</h3>
-            <p class="product-desc">حزمة شهرية لإدارة الإعلانات ورفع تفاعل الجمهور.</p>
+            <h3 class="product-title" data-i18n="prod2.title">خطة تسويق رقمي</h3>
+            <p class="product-desc" data-i18n="prod2.desc">حزمة شهرية لإدارة الإعلانات ورفع تفاعل الجمهور.</p>
             <div class="product-meta">
-              <div class="price">1,200 ر.س/شهر</div>
+              <div class="price" data-i18n="prod2.price">1,200 ر.س/شهر</div>
               <div class="product-actions">
-                <button class="btn btn-outline-card" type="button">تفاصيل</button>
-                <button class="btn btn-primary" type="button">اطلب الآن</button>
+                <button class="btn btn-outline-card" type="button" data-i18n="prod.details">تفاصيل</button>
+                <button class="btn btn-primary" type="button" data-i18n="prod.order">اطلب الآن</button>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="product-card" data-category="business">
-          <div class="product-media">
-            <img src="https://source.unsplash.com/800x600/?consulting,business" alt="منتج 3" loading="lazy" data-large="https://source.unsplash.com/1600x1200/?consulting,business">
-          </div>
-          <div class="product-body">
-            <h3 class="product-title">استشارة تطوير أعمال</h3>
-            <p class="product-desc">جلسات استشارية لتحديد فرص النمو وخريطة طريق تنفيذية.</p>
-            <div class="product-meta">
-              <div class="price">900 ر.س/جلسة</div>
-              <div class="product-actions">
-                <button class="btn btn-outline-card" type="button">تفاصيل</button>
-                <button class="btn btn-primary" type="button">اطلب الآن</button>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card" data-category="dev">
-          <div class="product-media">
-            <img src="https://source.unsplash.com/800x600/?mobile,app" alt="منتج 4" loading="lazy" data-large="https://source.unsplash.com/1600x1200/?mobile,app">
-          </div>
-          <div class="product-body">
-            <h3 class="product-title">تطبيق موبايل مخصّص</h3>
-            <p class="product-desc">تطبيق iOS وAndroid بتجربة مستخدم متطوّرة ودمج API.</p>
-            <div class="product-meta">
-              <div class="price">من 5,400 ر.س</div>
-              <div class="product-actions">
-                <button class="btn btn-outline-card" type="button">تفاصيل</button>
-                <button class="btn btn-primary" type="button">اطلب الآن</button>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- أضف المزيد من البطاقات هنا -->
       </div>
     </div>
   </section>
@@ -349,8 +200,8 @@
   <section id="contact" class="py-5" aria-labelledby="contact-heading">
     <div class="container">
       <div class="text-center mb-4">
-        <h2 id="contact-heading" class="fw-bold" style="color:var(--heading)">تواصل معنا</h2>
-        <p class="text-muted">هل لديك منتج تريد عرضه؟ أضف تفاصيله عبر نموذج الاتصال.</p>
+        <h2 id="contact-heading" class="fw-bold" style="color:var(--heading)" data-i18n="contact.heading">تواصل معنا</h2>
+        <p class="text-muted" data-i18n="contact.sub">هل لديك منتج تريد عرضه؟ أضف تفاصيله عبر نموذج الاتصال.</p>
       </div>
 
       <div class="row justify-content-center">
@@ -358,22 +209,22 @@
           <form id="contactForm" novalidate>
             <div class="row mb-3">
               <div class="col">
-                <label for="name" class="visually-hidden">الاسم</label>
-                <input type="text" id="name" class="form-control" placeholder="الاسم" aria-label="الاسم" required>
+                <label for="name" class="visually-hidden" data-i18n="form.name">الاسم</label>
+                <input type="text" id="name" class="form-control" placeholder="" data-i18n-placeholder="form.name" aria-label="الاسم" required>
               </div>
               <div class="col">
-                <label for="email" class="visually-hidden">البريد الإلكتروني</label>
-                <input type="email" id="email" class="form-control" placeholder="البريد الإلكتروني" aria-label="البريد" required>
+                <label for="email" class="visually-hidden" data-i18n="form.email">البريد الإلكتروني</label>
+                <input type="email" id="email" class="form-control" placeholder="" data-i18n-placeholder="form.email" aria-label="البريد" required>
               </div>
             </div>
 
             <div class="mb-3">
-              <label for="message" class="visually-hidden">الرسالة</label>
-              <textarea id="message" class="form-control" rows="6" placeholder="اكتب رسالتك هنا..." required></textarea>
+              <label for="message" class="visually-hidden" data-i18n="form.message">الرسالة</label>
+              <textarea id="message" class="form-control" rows="6" placeholder="" data-i18n-placeholder="form.message" required></textarea>
             </div>
 
             <div class="d-grid">
-              <button type="submit" class="btn btn-primary btn-lg">إرسال الرسالة</button>
+              <button type="submit" class="btn btn-primary btn-lg" data-i18n="form.send">إرسال الرسالة</button>
             </div>
 
             <div id="formMsg" class="mt-3" role="status" aria-live="polite" style="display:none;"></div>
@@ -387,7 +238,7 @@
   <footer>
     <div class="container d-flex justify-content-between align-items-center flex-column flex-md-row gap-3">
       <div>
-        <p class="mb-0" style="color:var(--muted)">جميع الحقوق محفوظة &copy; <span id="site-year"></span> الأنعام</p>
+        <p class="mb-0" style="color:var(--muted)" data-i18n="footer.copy">جميع الحقوق محفوظة &copy; <span id="site-year"></span> الأنعام</p>
       </div>
       <div>
         <a href="#" class="text-muted me-3" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -403,162 +254,202 @@
   </div>
 
   <!-- Back to top -->
-  <button id="backTop" aria-label="رجوع للأعلى" title="رجوع للأعلى"><i class="fas fa-chevron-up"></i></button>
-
-  <!-- Bootstrap JS -->
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <button id="backTop" aria-label="رجوع للأعلى" title="رجوع للأعلى"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
 
   <script defer>
-    /* =========================
-       Language & theme toggles
-       ========================= */
-    (function(){
-      const LANG_KEY = 'site_lang';
-      const THEME_KEY = 'site_theme';
+  /* ========= Translations (can be moved to external JSON) ========= */
+  const translations = {
+    ar: {
+      "brand.name":"الأنعام",
+      "brand.tagline":"الحلول المتكاملة",
+      "nav.home":"الرئيسية",
+      "nav.services":"خدماتنا",
+      "nav.products":"منتجاتنا",
+      "nav.contact":"اتصل بنا",
+      "cta.requestQuote":"اطلب عرض سعر",
+      "hero.title":"نحن نبني مستقبل أعمالك",
+      "hero.lead":"حلول استشارية وتقنية متكاملة لرفع أداء شركتك وتحقيق نمو مستدام.",
+      "cta.explore":"استكشف خدماتنا",
+      "cta.products":"تصفح المنتجات",
+      "services.heading":"ماذا نقدم لكم؟",
+      "services.sub":"مجموعة متكاملة من الخدمات المصممة لنجاحكم",
+      "services.business":"تطوير الأعمال",
+      "services.businessDesc":"استراتيجيات نمو فعالة لتحسين الإيرادات والأداء.",
+      "services.tech":"الحلول التقنية",
+      "services.techDesc":"تصميم وتطوير مواقع وتطبيقات تواكب أحدث التقنيات.",
+      "services.marketing":"التسويق الرقمي",
+      "services.marketingDesc":"إدارة الحملات والإعلانات لتحقيق أقصى أثر رقمي.",
+      "products.heading":"منتجاتنا",
+      "products.sub":"قم بإضافة صور المنتج والأسعار هنا — الشبكة قابلة للتوسع.",
+      "search.placeholder":"ابحث عن منتج...",
+      "filter.all":"كل الفئات",
+      "filter.dev":"الحلول التقنية",
+      "filter.marketing":"التسويق",
+      "filter.business":"تطوير الأعمال",
+      "prod1.title":"حل منصة إلكترونية",
+      "prod1.desc":"بناء منصة إدارة أعمال متكاملة مع لوحة تحكم وتقارير مخصصة.",
+      "prod1.price":"3,200 ر.س",
+      "prod2.title":"خطة تسويق رقمي",
+      "prod2.desc":"حزمة شهرية لإدارة الإعلانات ورفع تفاعل الجمهور.",
+      "prod2.price":"1,200 ر.س/شهر",
+      "prod.details":"تفاصيل",
+      "prod.order":"اطلب الآن",
+      "contact.heading":"تواصل معنا",
+      "contact.sub":"هل لديك منتج تريد عرضه؟ أضف تفاصيله عبر نموذج الاتصال.",
+      "form.name":"الاسم",
+      "form.email":"البريد الإلكتروني",
+      "form.message":"اكتب رسالتك هنا...",
+      "form.send":"إرسال الرسالة",
+      "footer.copy":"جميع الحقوق محفوظة &copy; <span id='site-year'></span> الأنعام"
+    },
+    en: {
+      "brand.name":"Al-An'am",
+      "brand.tagline":"Integrated Solutions",
+      "nav.home":"Home",
+      "nav.services":"Services",
+      "nav.products":"Products",
+      "nav.contact":"Contact",
+      "cta.requestQuote":"Request Quote",
+      "hero.title":"We build your business future",
+      "hero.lead":"End-to-end consulting and technical solutions to scale your company.",
+      "cta.explore":"Explore services",
+      "cta.products":"Browse products",
+      "services.heading":"What we offer",
+      "services.sub":"A full set of services designed for your success",
+      "services.business":"Business Development",
+      "services.businessDesc":"Effective growth strategies to improve revenue and performance.",
+      "services.tech":"Technical Solutions",
+      "services.techDesc":"Design and development of websites and apps with modern tech.",
+      "services.marketing":"Digital Marketing",
+      "services.marketingDesc":"Campaign management to maximize digital impact.",
+      "products.heading":"Our products",
+      "products.sub":"Add product images and prices here — grid is scalable.",
+      "search.placeholder":"Search products...",
+      "filter.all":"All categories",
+      "filter.dev":"Technical Solutions",
+      "filter.marketing":"Marketing",
+      "filter.business":"Business Development",
+      "prod1.title":"Platform Solution",
+      "prod1.desc":"Build an integrated business management platform with custom dashboard and reports.",
+      "prod1.price":"3,200 SAR",
+      "prod2.title":"Digital Marketing Plan",
+      "prod2.desc":"Monthly package to manage ads and increase engagement.",
+      "prod2.price":"1,200 SAR/mo",
+      "prod.details":"Details",
+      "prod.order":"Order now",
+      "contact.heading":"Contact us",
+      "contact.sub":"Have a product to showcase? Add details via the contact form.",
+      "form.name":"Name",
+      "form.email":"Email",
+      "form.message":"Write your message here...",
+      "form.send":"Send message",
+      "footer.copy":"All rights reserved &copy; <span id='site-year'></span> Al-An'am"
+    }
+  };
 
-      const btnAr = document.getElementById('btn-ar');
-      const btnEn = document.getElementById('btn-en');
-      const themeBtn = document.getElementById('theme-btn');
+  /* ========= i18n engine ========= */
+  (function(){
+    const LANG_KEY = 'site_lang';
+    const btnAr = document.getElementById('btn-ar');
+    const btnEn = document.getElementById('btn-en');
 
-      function setLang(lang){
-        localStorage.setItem(LANG_KEY, lang);
-        document.documentElement.lang = lang === 'en' ? 'en' : 'ar';
-        document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
-        document.querySelectorAll('[data-lang]').forEach(el=>{
-          el.style.display = el.getAttribute('data-lang') === lang ? '' : 'none';
-        });
-        btnAr.classList.toggle('active', lang==='ar');
-        btnEn.classList.toggle('active', lang==='en');
-        btnAr.setAttribute('aria-pressed', lang==='ar');
-        btnEn.setAttribute('aria-pressed', lang==='en');
-      }
+    function safeGet(key, lang){ return translations[lang] && translations[lang][key] ? translations[lang][key] : key; }
 
-      function applyTheme(theme){
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem(THEME_KEY, theme);
-        themeBtn.classList.toggle('active', theme === 'dark');
-        themeBtn.setAttribute('aria-pressed', theme === 'dark');
-      }
-
-      function init(){
-        const savedLang = localStorage.getItem(LANG_KEY) || (navigator.language && /^en/i.test(navigator.language) ? 'en' : 'ar');
-        setLang(savedLang);
-        const savedTheme = localStorage.getItem(THEME_KEY) || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        applyTheme(savedTheme);
-
-        btnAr.addEventListener('click', ()=> setLang('ar'));
-        btnEn.addEventListener('click', ()=> setLang('en'));
-        themeBtn.addEventListener('click', ()=> applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
-      }
-      init();
-    })();
-
-    /* =========================
-       Simple product filtering (client-side)
-       ========================= */
-    (function(){
-      const search = document.getElementById('searchProducts');
-      const filter = document.getElementById('filterCategory');
-      const grid = document.getElementById('productsGrid');
-
-      function updateFilter(){
-        const q = (search.value || '').trim().toLowerCase();
-        const cat = filter.value;
-        Array.from(grid.children).forEach(card=>{
-          const title = card.querySelector('.product-title').textContent.toLowerCase();
-          const desc = card.querySelector('.product-desc').textContent.toLowerCase();
-          const matchesQ = !q || title.includes(q) || desc.includes(q);
-          const matchesCat = !cat || card.dataset.category === cat;
-          card.style.display = (matchesQ && matchesCat) ? '' : 'none';
-        });
-      }
-
-      search.addEventListener('input', updateFilter);
-      filter.addEventListener('change', updateFilter);
-    })();
-
-    /* =========================
-       Lightbox for gallery & product images
-       ========================= */
-    (function(){
-      const lightbox = document.getElementById('lightbox');
-      const img = document.getElementById('lightboxImg');
-
-      // open when clicking thumbnails in gallery-strip
-      document.querySelectorAll('.gallery-thumb img, .product-media img').forEach(el=>{
-        el.style.cursor = 'zoom-in';
-        el.addEventListener('click', (e)=>{
-          const src = el.dataset.large || el.src;
-          img.src = src;
-          img.alt = el.alt || 'صورة';
-          lightbox.classList.add('active');
-          lightbox.setAttribute('aria-hidden','false');
-        });
-        // keyboard support: Enter opens
-        el.addEventListener('keydown', (ev)=>{
-          if(ev.key === 'Enter' || ev.key === ' '){
-            ev.preventDefault();
-            el.click();
-          }
-        });
+    function applyTranslations(lang){
+      // text nodes
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        const txt = safeGet(key, lang);
+        // if the translation contains HTML (like footer.copy), set innerHTML, otherwise textContent
+        if(txt.includes('<') && txt.includes('span')) el.innerHTML = txt;
+        else el.textContent = txt;
       });
-
-      lightbox.addEventListener('click', ()=>{
-        lightbox.classList.remove('active');
-        lightbox.setAttribute('aria-hidden','true');
-        img.src = '';
+      // placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+        const key = el.getAttribute('data-i18n-placeholder');
+        const txt = safeGet(key, lang);
+        el.setAttribute('placeholder', txt);
       });
+      // update document direction & lang
+      document.documentElement.lang = (lang === 'en') ? 'en' : 'ar';
+      document.documentElement.dir = (lang === 'en') ? 'ltr' : 'rtl';
+      // highlight active buttons
+      if(btnAr) { btnAr.classList.toggle('active', lang === 'ar'); btnAr.setAttribute('aria-pressed', String(lang === 'ar')); }
+      if(btnEn) { btnEn.classList.toggle('active', lang === 'en'); btnEn.setAttribute('aria-pressed', String(lang === 'en')); }
+      // if any components need re-init depending on direction (e.g., tooltips), do it here
+      // update year in footer (works for both innerHTML/footer.copy)
+      const yearSpan = document.getElementById('site-year');
+      if(yearSpan) yearSpan.textContent = new Date().getFullYear();
+    }
 
-      // close on Escape
-      document.addEventListener('keydown', (e)=>{
-        if(e.key === 'Escape' && lightbox.classList.contains('active')){
-          lightbox.classList.remove('active');
-          lightbox.setAttribute('aria-hidden','true');
-          img.src = '';
-        }
+    function setLang(lang){
+      try { localStorage.setItem(LANG_KEY, lang); } catch(e) {}
+      applyTranslations(lang);
+    }
+    function getSavedOrDefaultLang(){
+      try {
+        const s = localStorage.getItem(LANG_KEY);
+        if(s === 'ar' || s === 'en') return s;
+      } catch(e){}
+      try { return (navigator.language && /^en/i.test(navigator.language)) ? 'en' : 'ar'; } catch(e){ return 'ar'; }
+    }
+
+    // bind controls
+    function bindToggle(){
+      if(btnAr){ btnAr.addEventListener('click', ()=> setLang('ar')); btnAr.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' ') { e.preventDefault(); setLang('ar'); } }); }
+      if(btnEn){ btnEn.addEventListener('click', ()=> setLang('en')); btnEn.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' ') { e.preventDefault(); setLang('en'); } }); }
+      // delegation: any element with data-lang-switch
+      document.querySelectorAll('[data-lang-switch]').forEach(el=>{
+        const t = el.getAttribute('data-lang-switch');
+        if(t==='ar' || t==='en') el.addEventListener('click', ()=> setLang(t));
       });
-    })();
+    }
 
-    /* =========================
-       Contact form (simple client-side)
-       ========================= */
-    (function(){
-      const form = document.getElementById('contactForm');
-      const msg = document.getElementById('formMsg');
+    // initialize i18n
+    document.addEventListener('DOMContentLoaded', ()=>{
+      bindToggle();
+      const lang = getSavedOrDefaultLang();
+      applyTranslations(lang);
+    });
+  })();
 
-      form.addEventListener('submit', async function(e){
-        e.preventDefault();
-        msg.style.display = 'none';
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('message').value.trim();
-        const lang = localStorage.getItem('site_lang') || (navigator.language && /^en/i.test(navigator.language) ? 'en' : 'ar');
+  /* ========= remaining UI scripts (theme, lightbox, filter, form, etc.) ========= */
+  (function(){
+    // Simple theme toggle (keeps existing behavior)
+    const themeBtn = document.getElementById('theme-btn');
+    const THEME_KEY = 'site_theme';
+    function safeSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+    function safeGet(k){ try{return localStorage.getItem(k);}catch(e){return null;} }
+    function applyTheme(t){ document.documentElement.setAttribute('data-theme', t); safeSet(THEME_KEY,t); if(themeBtn) themeBtn.classList.toggle('active', t==='dark'); if(themeBtn) themeBtn.setAttribute('aria-pressed', String(t==='dark')); }
+    function initTheme(){ const s = safeGet(THEME_KEY); const t = (s==='dark'||s==='light')?s:(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light'); applyTheme(t); if(themeBtn) themeBtn.addEventListener('click', ()=> applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')); }
+    initTheme();
 
-        if(!name || !email || !message){
-          msg.style.display = '';
-          msg.style.color = '#d63384';
-          msg.textContent = lang === 'ar' ? 'يرجى تعبئة جميع الحقول.' : 'Please fill in all required fields.';
-          return;
-        }
+    // product filter
+    const search = document.getElementById('searchProducts'), filter = document.getElementById('filterCategory'), grid = document.getElementById('productsGrid');
+    function updateFilter(){ if(!grid) return; const q=(search?.value||'').trim().toLowerCase(); const cat=filter?.value||''; Array.from(grid.children).forEach(card=>{ const title=(card.querySelector('.product-title')?.textContent||'').toLowerCase(); const desc=(card.querySelector('.product-desc')?.textContent||'').toLowerCase(); const okQ = !q || title.includes(q) || desc.includes(q); const okC = !cat || card.dataset.category===cat; card.style.display = (okQ && okC)?'':'none'; }); }
+    if(search) search.addEventListener('input', updateFilter);
+    if(filter) filter.addEventListener('change', updateFilter);
 
-        // mock send
-        msg.style.display = '';
-        msg.style.color = '#198754';
-        msg.textContent = lang === 'ar' ? 'تم إرسال رسالتك — شكرًا! سنتواصل معك قريبًا.' : 'Your message has been sent — thank you!';
-        form.reset();
-        setTimeout(()=> msg.style.display = 'none', 5000);
-      });
-    })();
+    // lightbox
+    const lightbox = document.getElementById('lightbox'), lbImg = document.getElementById('lightboxImg');
+    document.querySelectorAll('.gallery-thumb img, .product-media img').forEach(el=>{
+      el.style.cursor='zoom-in';
+      el.addEventListener('click', ()=>{ const src = el.dataset.large || el.src; lbImg.src = src; lbImg.alt = el.alt || ''; lightbox.classList.add('active'); lightbox.setAttribute('aria-hidden','false'); });
+      el.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); el.click(); }});
+    });
+    lightbox?.addEventListener('click', ()=>{ lightbox.classList.remove('active'); lightbox.setAttribute('aria-hidden','true'); lbImg.src=''; });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape' && lightbox?.classList.contains('active')){ lightbox.classList.remove('active'); lightbox.setAttribute('aria-hidden','true'); lbImg.src=''; }});
 
-    /* =========================
-       Back to top
-       ========================= */
-    (function(){
-      const back = document.getElementById('backTop');
-      window.addEventListener('scroll', ()=> back.style.display = window.scrollY > 300 ? 'block' : 'none');
-      back.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
-      document.getElementById('site-year').textContent = new Date().getFullYear();
-    })();
+    // contact form simple
+    const form = document.getElementById('contactForm'), formMsg = document.getElementById('formMsg');
+    form?.addEventListener('submit', e=>{ e.preventDefault(); if(!form) return; const name=document.getElementById('name').value.trim(), email=document.getElementById('email').value.trim(), message=document.getElementById('message').value.trim(); const lang = (localStorage.getItem('site_lang')==='en')?'en':'ar'; if(!name||!email||!message){ formMsg.style.display=''; formMsg.style.color='#d63384'; formMsg.textContent = (lang==='ar') ? 'يرجى تعبئة جميع الحقول.' : 'Please fill in all required fields.'; return; } formMsg.style.display=''; formMsg.style.color='#198754'; formMsg.textContent = (lang==='ar') ? 'تم إرسال رسالتك — شكرًا! سنتواصل معك قريبًا.' : 'Your message has been sent — thank you!'; form.reset(); setTimeout(()=> formMsg.style.display='none',5000); });
+
+    // back to top + year
+    const back = document.getElementById('backTop');
+    window.addEventListener('scroll', ()=> back && (back.style.display = window.scrollY>300?'block':'none'));
+    back?.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+    const yearEl = document.getElementById('site-year'); if(yearEl) yearEl.textContent = new Date().getFullYear();
+  })();
   </script>
 </body>
 </html>
