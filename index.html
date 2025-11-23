@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>الأنعام | الحلول المتكاملة</title>
-  <meta name="description" content="حلول متكاملة في التصميم، التطوير، والاستشارات التقنية." />
+  <meta name="description" content="حلول متكاملة — منتجات وخدمات الأنعام." />
   <meta name="theme-color" content="#065fd4" />
 
   <!-- Fonts & Bootstrap RTL -->
@@ -17,53 +17,46 @@
   <link rel="icon" href="/assets/logo.png" />
 
   <style>
-    /*
-      تصميم ألوان مرن وواضح للقراءة في الوضع الفاتح والداكن.
-      المتغيرات التالية تجعل من السهل ضبط الهوية البصرية لاحقًا.
-    */
+    /* ===========================
+       Brand & theme variables
+       =========================== */
     :root{
-      /* brand */
-      --accent: #0d6efd;            /* primary brand color (light mode baseline) */
+      --accent: #0d6efd;
       --accent-600: #0b5ed7;
-      --accent-contrast: #ffffff;   /* text color on accent buttons */
+      --accent-contrast: #ffffff;
 
-      /* neutrals (light) */
       --bg: #f7f9fc;
       --card: #ffffff;
-      --text: #0f1724;              /* body text */
-      --heading: #071133;           /* headings */
-      --muted: #6c757d;            /* secondary text */
+      --text: #0f1724;
+      --heading: #071133;
+      --muted: #6c757d;
       --border: rgba(15,23,36,0.06);
 
-      /* surfaces */
-      --glass: rgba(255,255,255,0.6);
-
-      /* small UI */
       --radius: 14px;
       --shadow-soft: 0 10px 30px rgba(10,18,30,0.06);
+
+      /* page width */
+      --page-max-width: 1280px; /* <-- increased width for product galleries */
+      --page-padding: 24px;
     }
 
-    /* Dark theme overrides: ensure high contrast for text & UI
-       We picked slightly cooler accent in dark to pop on deep background.
-       Check contrast: headings/text >= AA/AAA depending on size.
-    */
     [data-theme="dark"]{
       --accent: #4ea8ff;
       --accent-600: #2f7fd2;
       --accent-contrast: #071229;
 
-      --bg: #031224;            /* deep navy */
-      --card: #071827;          /* elevated card surface */
-      --text: #e6f0ff;         /* main readable text */
-      --heading: #ffffff;      /* headings */
-      --muted: #9fb3cc;        /* secondary text */
+      --bg: #031224;
+      --card: #071827;
+      --text: #e6f0ff;
+      --heading: #ffffff;
+      --muted: #9fb3cc;
       --border: rgba(255,255,255,0.04);
-      --glass: rgba(10,18,30,0.35);
-
       --shadow-soft: 0 12px 40px rgba(2,8,20,0.5);
     }
 
-    /* Global */
+    /* ===========================
+       Global styles
+       =========================== */
     html,body{
       font-family:'Cairo',sans-serif;
       background:var(--bg);
@@ -73,145 +66,104 @@
       -moz-osx-font-smoothing:grayscale;
       transition: background-color .35s ease, color .35s ease;
     }
-    a { color:var(--accent); transition: color .25s; text-decoration:none; }
-    a:hover { color:var(--accent-600); text-decoration:underline; }
+    a{ color:var(--accent); text-decoration:none; transition: color .2s; }
+    a:hover{ color:var(--accent-600); text-decoration:underline; }
+    img{ max-width:100%; display:block; }
+
+    /* Custom wider container */
+    .container {
+      max-width: var(--page-max-width);
+      padding-left: var(--page-padding);
+      padding-right: var(--page-padding);
+      margin-left:auto;
+      margin-right:auto;
+    }
 
     /* NAV */
-    .navbar{
-      padding:0.6rem 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      border-bottom: 1px solid var(--border);
-      transition: background-color .35s, border-color .35s;
-      backdrop-filter: blur(6px);
-    }
-    .navbar-brand img.site-logo{ width:52px; height:52px; object-fit:contain; border-radius:10px; }
+    .navbar{ padding:0.8rem 0; border-bottom: 1px solid var(--border); background:transparent; }
+    .site-logo{ width:64px; height:64px; object-fit:contain; border-radius:10px; }
 
-    /* HERO */
-    .hero-section{
-      position:relative;
-      color:var(--card); /* will be overridden by inner text colors */
-      padding:100px 0;
-      border-radius: calc(var(--radius) + 4px);
-      overflow: hidden;
-      margin-bottom:22px;
-      box-shadow: var(--shadow-soft);
-      background-color: transparent;
-    }
+    /* HERO: larger to host big banner or promo image */
+    .hero-section{ padding:120px 0 80px; border-radius: calc(var(--radius) + 4px); position:relative; overflow:hidden; }
+    .hero-bg{ position:absolute; inset:0; background-image: url('https://source.unsplash.com/2200x900/?office,technology'); background-size:cover; background-position:center; transform:scale(1.03); filter:contrast(.96) saturate(.95); z-index:0; }
+    .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(3,10,27,0.58), rgba(3,10,27,0.35)); z-index:1; }
+    .hero-content{ position:relative; z-index:2; text-align:center; color:var(--card); }
 
-    .hero-bg{
-      position:absolute; inset:0; z-index:0;
-      background-image: url('https://source.unsplash.com/1600x900/?business,office');
-      background-size:cover; background-position:center;
-      filter: saturate(0.95) contrast(0.92);
-      transform: scale(1.03);
-    }
-    /* overlay uses the theme colors' alpha for consistency */
-    .hero-overlay{
-      position:absolute; inset:0; z-index:1;
-      background: linear-gradient(180deg, rgba(3,10,27,0.55), rgba(3,10,27,0.35));
-      mix-blend-mode: multiply;
-    }
-    .hero-content{ position:relative; z-index:2; text-align:center; color:var(--card); padding:48px 18px; }
+    .hero-title{ font-weight:700; font-size:3.2rem; margin-bottom:12px; color:var(--card); }
+    .hero-lead{ font-size:1.15rem; color:rgba(255,255,255,0.95); margin-bottom:22px; }
 
-    .hero-title{
-      font-weight:700;
-      font-size:2.6rem;
-      letter-spacing:0.4px;
-      color:var(--card);
-      margin-bottom:10px;
-      transition: color .25s;
-    }
-    .hero-lead{
-      font-size:1.05rem;
-      color: rgba(255,255,255,0.95);
-      margin-bottom:18px;
-    }
-    .hero-cta .btn{
-      min-width:180px;
-      font-weight:600;
-      border-radius:999px;
-      padding:12px 20px;
-      box-shadow: 0 8px 26px rgba(8,22,48,0.12);
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-    .hero-cta .btn:active{ transform: translateY(1px); }
+    /* Controls (language/theme) */
+    .control-btn{ border-radius:999px; padding:8px 12px; border:1px solid var(--border); background:transparent; color:var(--text); }
+    .control-btn.active{ background:var(--accent); color:var(--accent-contrast); border-color:transparent; box-shadow:0 8px 24px rgba(10,55,130,0.12); }
 
     /* SERVICES */
-    .service-card{
-      border-radius:12px;
-      transition: transform .28s ease, box-shadow .28s ease, background-color .25s;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.01));
-      padding:28px;
-    }
-    .service-card:hover{ transform: translateY(-8px); box-shadow: var(--shadow-soft); }
-    .icon-box{ font-size:36px; color:var(--accent); margin-bottom:12px; }
+    .service-card{ border-radius:12px; padding:28px; background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow-soft); }
+    .icon-box{ font-size:36px; color:var(--accent); margin-bottom:10px; }
 
-    /* CONTACT */
-    .contact-section{
-      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.02));
-      padding:56px 0; border-radius:12px; box-shadow:var(--shadow-soft); border:1px solid var(--border);
+    /* PRODUCTS / GALLERY */
+    .products-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px; flex-wrap:wrap; }
+    .products-grid{
+      display:grid;
+      gap:20px;
+      grid-template-columns: repeat(4, 1fr); /* large screens: 4 columns */
     }
-    .form-control{ border-radius:10px; border:1px solid var(--border); background:transparent; color:var(--text); }
+    @media (max-width:1100px){ .products-grid{ grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width:820px){ .products-grid{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width:520px){ .products-grid{ grid-template-columns: 1fr; } }
 
-    /* Buttons (consistent brand) */
-    .btn-primary{
-      background: linear-gradient(180deg, var(--accent), var(--accent-600));
-      color: var(--accent-contrast);
-      border: none;
-      box-shadow: 0 8px 22px rgba(11,56,120,0.12);
-      transition: transform .12s, box-shadow .12s, opacity .12s;
+    .product-card{
+      border-radius:12px; overflow:hidden; background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow-soft);
+      display:flex; flex-direction:column; min-height:100%;
     }
-    .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 18px 40px rgba(11,56,120,0.14); }
+    .product-media{ position:relative; padding-top:62%; background:#eee; overflow:hidden; }
+    .product-media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .product-body{ padding:16px; display:flex; flex-direction:column; gap:10px; flex:1; }
+    .product-title{ font-weight:700; color:var(--heading); margin:0; }
+    .product-desc{ color:var(--muted); font-size:0.95rem; margin:0; flex:1; }
+    .product-meta{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; }
+    .price{ font-weight:700; color:var(--accent); }
+    .product-actions{ display:flex; gap:10px; margin-top:12px; }
 
-    /* Accessible focus styles */
-    :focus-visible{
-      outline: 3px solid color-mix(in srgb, var(--accent) 20%, transparent); /* subtle */
-      outline-offset: 3px;
+    .btn-outline-card{ border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 12px; border-radius:10px; }
+
+    /* Gallery mini thumbnails */
+    .gallery-strip{ display:flex; gap:10px; overflow:auto; padding:10px 0; }
+    .gallery-thumb{ width:120px; height:80px; flex:0 0 auto; border-radius:8px; overflow:hidden; border:1px solid var(--border); }
+    .gallery-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* Lightbox (simple) */
+    .lightbox{
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.7); z-index:2000; padding:28px;
     }
-    button.control-btn{
-      border-radius:999px; padding:6px 10px; border:1px solid var(--border); background:transparent; color:var(--text);
-      transition: background-color .2s, color .2s, box-shadow .2s;
-    }
-    button.control-btn.active{ background:var(--accent); color:var(--accent-contrast); border-color:transparent; box-shadow:0 8px 26px rgba(10,55,130,0.12); }
+    .lightbox.active{ display:flex; }
+    .lightbox img{ max-width:1200px; max-height:80vh; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,0.6); }
 
     /* FOOTER */
-    footer{
-      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.08));
-      color:var(--muted);
-      padding:28px 0;
-      border-radius:8px;
-      margin-top:24px;
-      border-top:1px solid var(--border);
-    }
+    footer{ margin-top:36px; padding:28px 0; color:var(--muted); border-top:1px solid var(--border); }
 
     /* Back to top */
-    #backTop{
-      position:fixed; bottom:24px; left:24px; display:none; z-index:1200; border-radius:50%; padding:10px 12px;
-      box-shadow: 0 12px 36px rgba(8,20,40,0.16);
-      background: var(--accent); color: var(--accent-contrast); border:none;
-      transition: transform .18s;
-    }
-    #backTop:hover{ transform: translateY(-4px); }
+    #backTop{ position:fixed; bottom:24px; left:24px; display:none; z-index:1200; border-radius:50%; padding:10px 12px; background:var(--accent); color:var(--accent-contrast); border:none; box-shadow:0 12px 36px rgba(8,20,40,0.16); }
 
-    /* Responsive tweaks */
+    /* accessibility focus */
+    :focus-visible{ outline:3px solid color-mix(in srgb, var(--accent) 20%, transparent); outline-offset:3px; }
+
+    /* small screens hero */
     @media (max-width:768px){
       .hero-title{ font-size:1.9rem; }
-      .hero-section{ padding:64px 0; }
-      .navbar .collapse { margin-top:6px; }
+      .hero-section{ padding:64px 0 40px; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg sticky-top" aria-label="Main navigation" role="navigation">
+  <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#" aria-label="الانتقال إلى الصفحة الرئيسية">
         <img src="/assets/logo.png" alt="شعار الأنعام" class="site-logo">
-        <div style="display:flex;flex-direction:column;margin-inline-start:10px;line-height:1;">
-          <span style="font-weight:700;color:var(--heading);font-size:1.05rem">الأنعام</span>
-          <small style="color:var(--muted);font-size:0.8rem">الحلول المتكاملة</small>
+        <div style="display:flex;flex-direction:column;margin-inline-start:12px;">
+          <span style="font-weight:700;color:var(--heading);font-size:1.1rem">الأنعام</span>
+          <small style="color:var(--muted);font-size:0.85rem">الحلول المتكاملة</small>
         </div>
       </a>
 
@@ -223,15 +175,14 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
           <li class="nav-item"><a class="nav-link" href="#services">خدماتنا</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">منتجاتنا</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">اتصل بنا</a></li>
         </ul>
 
-        <!-- Controls -->
         <div class="d-flex align-items-center gap-2">
           <button id="btn-ar" class="control-btn active" title="العربية" aria-pressed="true">العربية</button>
           <button id="btn-en" class="control-btn" title="English" aria-pressed="false">EN</button>
-          <button id="theme-btn" class="control-btn" title="تبديل الوضع" aria-pressed="false" aria-label="تبديل الوضع">🌓</button>
+          <button id="theme-btn" class="control-btn" title="تبديل الوضع" aria-pressed="false">🌓</button>
           <a href="#contact" class="btn btn-primary rounded-pill px-4">اطلب عرض سعر</a>
         </div>
       </div>
@@ -239,23 +190,15 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero-section" role="region" aria-label="قسم المقدمة">
+  <section class="hero-section" aria-label="قسم المقدمة">
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-overlay" aria-hidden="true"></div>
-
     <div class="container hero-content">
-      <h1 class="hero-title">
-        <span data-lang="ar">نحن نبني مستقبل أعمالك</span>
-        <span data-lang="en" style="display:none">We build your business future</span>
-      </h1>
-      <p class="hero-lead">
-        <span data-lang="ar">حلول استشارية وتقنية متكاملة لرفع أداء شركتك وتحقيق نمو مستدام.</span>
-        <span data-lang="en" style="display:none">End-to-end consulting and technical solutions to scale your business.</span>
-      </p>
-
-      <div class="hero-cta d-flex justify-content-center gap-2 flex-wrap">
+      <h1 class="hero-title"><span data-lang="ar">نحن نبني مستقبل أعمالك</span><span data-lang="en" style="display:none">We build your business future</span></h1>
+      <p class="hero-lead"><span data-lang="ar">حلول استشارية وتقنية متكاملة لرفع أداء شركتك وتحقيق نمو مستدام.</span><span data-lang="en" style="display:none">End-to-end consulting and technical solutions to scale your business.</span></p>
+      <div class="d-flex justify-content-center gap-2 hero-cta flex-wrap">
         <a href="#services" class="btn btn-light btn-lg rounded-pill px-4">استكشف خدماتنا</a>
-        <a href="#contact" class="btn btn-primary btn-lg rounded-pill px-4">تواصل معنا</a>
+        <a href="#products" class="btn btn-primary btn-lg rounded-pill px-4">تصفح المنتجات</a>
       </div>
     </div>
   </section>
@@ -270,67 +213,144 @@
 
       <div class="row g-4">
         <div class="col-md-4">
-          <article class="service-card h-100 text-center" aria-labelledby="s1">
-            <div>
-              <div class="icon-box" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
-              <h4 id="s1" class="fw-bold" style="color:var(--heading)">تطوير الأعمال</h4>
-              <p class="text-muted">نساعدك في وضع استراتيجيات نمو فعالة لزيادة الأرباح وتحسين الأداء.</p>
-            </div>
-          </article>
+          <div class="service-card h-100 text-center">
+            <div class="icon-box" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+            <h4 class="fw-bold">تطوير الأعمال</h4>
+            <p class="text-muted">استراتيجيات نمو فعالة لتحسين الإيرادات والأداء.</p>
+          </div>
         </div>
 
         <div class="col-md-4">
-          <article class="service-card h-100 text-center" aria-labelledby="s2">
-            <div>
-              <div class="icon-box" aria-hidden="true"><i class="fas fa-laptop-code"></i></div>
-              <h4 id="s2" class="fw-bold" style="color:var(--heading)">الحلول التقنية</h4>
-              <p class="text-muted">تصميم وتطوير مواقع وتطبيقات تواكب أحدث التقنيات العالمية.</p>
-            </div>
-          </article>
+          <div class="service-card h-100 text-center">
+            <div class="icon-box" aria-hidden="true"><i class="fas fa-laptop-code"></i></div>
+            <h4 class="fw-bold">الحلول التقنية</h4>
+            <p class="text-muted">تصميم وتطوير مواقع وتطبيقات تواكب أحدث التقنيات.</p>
+          </div>
         </div>
 
         <div class="col-md-4">
-          <article class="service-card h-100 text-center" aria-labelledby="s3">
-            <div>
-              <div class="icon-box" aria-hidden="true"><i class="fas fa-bullhorn"></i></div>
-              <h4 id="s3" class="fw-bold" style="color:var(--heading)">التسويق الرقمي</h4>
-              <p class="text-muted">إدارة الحملات الإعلانية والتواجد على منصات التواصل الاجتماعي.</p>
-            </div>
-          </article>
+          <div class="service-card h-100 text-center">
+            <div class="icon-box" aria-hidden="true"><i class="fas fa-bullhorn"></i></div>
+            <h4 class="fw-bold">التسويق الرقمي</h4>
+            <p class="text-muted">إدارة الحملات والإعلانات لتحقيق أقصى أثر رقمي.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="py-5" aria-labelledby="about-heading">
+  <!-- PRODUCTS -->
+  <section id="products" class="py-5" aria-labelledby="products-heading">
     <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-6">
-          <img src="https://source.unsplash.com/600x400/?team,meeting" class="img-fluid rounded shadow" alt="فريق العمل" loading="lazy">
+      <div class="products-header">
+        <div>
+          <h2 id="products-heading" class="fw-bold" style="color:var(--heading)">منتجاتنا</h2>
+          <p class="text-muted mb-0">قم بإضافة صور المنتج والأسعار هنا — الشبكة قابلة للتوسع.</p>
         </div>
-        <div class="col-md-6 mt-4 mt-md-0">
-          <h2 id="about-heading" class="fw-bold mb-3" style="color:var(--heading)"><span data-lang="ar">لماذا تختارنا؟</span><span data-lang="en" style="display:none">Why choose us?</span></h2>
-          <p class="text-muted">
-            <span data-lang="ar">فريق من الخبراء يقدم حلولاً عملية ومبتكرة مع التزام كامل بالمواعيد وجودة تنفيذ عالية.</span>
-            <span data-lang="en" style="display:none">A team of experts delivering practical and innovative solutions with on-time delivery and high quality.</span>
-          </p>
-          <ul class="list-unstyled">
-            <li class="mb-2"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i><span data-lang="ar">دعم فني متواصل 24/7</span></li>
-            <li class="mb-2"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i><span data-lang="ar">جودة عالية وأسعار تنافسية</span></li>
-            <li class="mb-2"><i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i><span data-lang="ar">التزام تام بالمواعيد</span></li>
-          </ul>
+
+        <!-- مثال أدوات فرز/بحث (غير متصلة): يمكن توصيلها لاحقًا -->
+        <div class="d-flex gap-2 align-items-center">
+          <input id="searchProducts" type="search" class="form-control" placeholder="ابحث عن منتج..." style="min-width:220px;">
+          <select id="filterCategory" class="form-select" style="min-width:180px;">
+            <option value="">كل الفئات</option>
+            <option value="dev">الحلول التقنية</option>
+            <option value="marketing">التسويق</option>
+            <option value="business">تطوير الأعمال</option>
+          </select>
         </div>
+      </div>
+
+      <!-- gallery thumbnails -->
+      <div class="gallery-strip mb-3" aria-hidden="false">
+        <!-- استبدل الصور بمساراتك في /assets/products/... -->
+        <div class="gallery-thumb"><img src="https://source.unsplash.com/400x300/?product,office" alt="صورة 1" loading="lazy" data-large="https://source.unsplash.com/1600x900/?product,office"></div>
+        <div class="gallery-thumb"><img src="https://source.unsplash.com/400x300/?product,technology" alt="صورة 2" loading="lazy" data-large="https://source.unsplash.com/1600x900/?product,technology"></div>
+        <div class="gallery-thumb"><img src="https://source.unsplash.com/400x300/?product,gadget" alt="صورة 3" loading="lazy" data-large="https://source.unsplash.com/1600x900/?product,gadget"></div>
+        <div class="gallery-thumb"><img src="https://source.unsplash.com/400x300/?office,workspace" alt="صورة 4" loading="lazy" data-large="https://source.unsplash.com/1600x900/?office,workspace"></div>
+      </div>
+
+      <!-- products grid -->
+      <div id="productsGrid" class="products-grid">
+        <!-- مثال بطاقة منتج: انسخ/عدل هذه البطاقات لإضافة أكثر -->
+        <article class="product-card" data-category="dev">
+          <div class="product-media">
+            <img src="https://source.unsplash.com/800x600/?laptop,app" alt="منتج 1" loading="lazy" tabindex="0" data-large="https://source.unsplash.com/1600x1200/?laptop,app">
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">حل منصة إلكترونية</h3>
+            <p class="product-desc">بناء منصة إدارة أعمال متكاملة مع لوحة تحكم وتقارير مخصصة.</p>
+            <div class="product-meta">
+              <div class="price">3,200 ر.س</div>
+              <div class="product-actions">
+                <button class="btn btn-outline-card" type="button">تفاصيل</button>
+                <button class="btn btn-primary" type="button">اطلب الآن</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="marketing">
+          <div class="product-media">
+            <img src="https://source.unsplash.com/800x600/?marketing,ads" alt="منتج 2" loading="lazy" data-large="https://source.unsplash.com/1600x1200/?marketing,ads">
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">خطة تسويق رقمي</h3>
+            <p class="product-desc">حزمة شهرية لإدارة الإعلانات ورفع تفاعل الجمهور.</p>
+            <div class="product-meta">
+              <div class="price">1,200 ر.س/شهر</div>
+              <div class="product-actions">
+                <button class="btn btn-outline-card" type="button">تفاصيل</button>
+                <button class="btn btn-primary" type="button">اطلب الآن</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="business">
+          <div class="product-media">
+            <img src="https://source.unsplash.com/800x600/?consulting,business" alt="منتج 3" loading="lazy" data-large="https://source.unsplash.com/1600x1200/?consulting,business">
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">استشارة تطوير أعمال</h3>
+            <p class="product-desc">جلسات استشارية لتحديد فرص النمو وخريطة طريق تنفيذية.</p>
+            <div class="product-meta">
+              <div class="price">900 ر.س/جلسة</div>
+              <div class="product-actions">
+                <button class="btn btn-outline-card" type="button">تفاصيل</button>
+                <button class="btn btn-primary" type="button">اطلب الآن</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="dev">
+          <div class="product-media">
+            <img src="https://source.unsplash.com/800x600/?mobile,app" alt="منتج 4" loading="lazy" data-large="https://source.unsplash.com/1600x1200/?mobile,app">
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">تطبيق موبايل مخصّص</h3>
+            <p class="product-desc">تطبيق iOS وAndroid بتجربة مستخدم متطوّرة ودمج API.</p>
+            <div class="product-meta">
+              <div class="price">من 5,400 ر.س</div>
+              <div class="product-actions">
+                <button class="btn btn-outline-card" type="button">تفاصيل</button>
+                <button class="btn btn-primary" type="button">اطلب الآن</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- أضف المزيد من البطاقات هنا -->
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="contact-section" aria-labelledby="contact-heading">
+  <section id="contact" class="py-5" aria-labelledby="contact-heading">
     <div class="container">
       <div class="text-center mb-4">
-        <h2 id="contact-heading" class="fw-bold" style="color:var(--heading)"><span data-lang="ar">تواصل معنا</span><span data-lang="en" style="display:none">Contact us</span></h2>
-        <p class="text-muted"><span data-lang="ar">نحن هنا للإجابة على استفساراتكم</span><span data-lang="en" style="display:none">We are here to answer your queries</span></p>
+        <h2 id="contact-heading" class="fw-bold" style="color:var(--heading)">تواصل معنا</h2>
+        <p class="text-muted">هل لديك منتج تريد عرضه؟ أضف تفاصيله عبر نموذج الاتصال.</p>
       </div>
 
       <div class="row justify-content-center">
@@ -352,8 +372,6 @@
               <textarea id="message" class="form-control" rows="6" placeholder="اكتب رسالتك هنا..." required></textarea>
             </div>
 
-            <input type="text" id="phone_hp" name="phone_hp" style="display:none" tabindex="-1" autocomplete="off" />
-
             <div class="d-grid">
               <button type="submit" class="btn btn-primary btn-lg">إرسال الرسالة</button>
             </div>
@@ -372,21 +390,28 @@
         <p class="mb-0" style="color:var(--muted)">جميع الحقوق محفوظة &copy; <span id="site-year"></span> الأنعام</p>
       </div>
       <div>
-        <a href="#" class="text-white me-3" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="text-white me-3" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="text-white" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-muted me-3" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-muted me-3" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-muted" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
   </footer>
 
+  <!-- Lightbox overlay -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <img id="lightboxImg" src="" alt="عرض الصورة">
+  </div>
+
   <!-- Back to top -->
-  <button id="backTop" aria-label="رجوع للأعلى" title="رجوع للأعلى"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+  <button id="backTop" aria-label="رجوع للأعلى" title="رجوع للأعلى"><i class="fas fa-chevron-up"></i></button>
 
   <!-- Bootstrap JS -->
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Scripts: language/theme toggle + form handling -->
   <script defer>
+    /* =========================
+       Language & theme toggles
+       ========================= */
     (function(){
       const LANG_KEY = 'site_lang';
       const THEME_KEY = 'site_theme';
@@ -395,7 +420,6 @@
       const btnEn = document.getElementById('btn-en');
       const themeBtn = document.getElementById('theme-btn');
 
-      // set language visibility
       function setLang(lang){
         localStorage.setItem(LANG_KEY, lang);
         document.documentElement.lang = lang === 'en' ? 'en' : 'ar';
@@ -409,25 +433,16 @@
         btnEn.setAttribute('aria-pressed', lang==='en');
       }
 
-      // apply visual theme (light/dark)
       function applyTheme(theme){
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem(THEME_KEY, theme);
         themeBtn.classList.toggle('active', theme === 'dark');
         themeBtn.setAttribute('aria-pressed', theme === 'dark');
-        // extra: adapt hero overlay for better legibility in light theme
-        const overlay = document.querySelector('.hero-overlay');
-        if(theme === 'dark'){
-          overlay.style.background = 'linear-gradient(180deg, rgba(3,10,27,0.7), rgba(3,10,27,0.45))';
-        } else {
-          overlay.style.background = 'linear-gradient(180deg, rgba(3,10,27,0.45), rgba(3,10,27,0.24))';
-        }
       }
 
       function init(){
         const savedLang = localStorage.getItem(LANG_KEY) || (navigator.language && /^en/i.test(navigator.language) ? 'en' : 'ar');
         setLang(savedLang);
-
         const savedTheme = localStorage.getItem(THEME_KEY) || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         applyTheme(savedTheme);
 
@@ -438,7 +453,75 @@
       init();
     })();
 
-    // Contact form: client-side validation + mock send
+    /* =========================
+       Simple product filtering (client-side)
+       ========================= */
+    (function(){
+      const search = document.getElementById('searchProducts');
+      const filter = document.getElementById('filterCategory');
+      const grid = document.getElementById('productsGrid');
+
+      function updateFilter(){
+        const q = (search.value || '').trim().toLowerCase();
+        const cat = filter.value;
+        Array.from(grid.children).forEach(card=>{
+          const title = card.querySelector('.product-title').textContent.toLowerCase();
+          const desc = card.querySelector('.product-desc').textContent.toLowerCase();
+          const matchesQ = !q || title.includes(q) || desc.includes(q);
+          const matchesCat = !cat || card.dataset.category === cat;
+          card.style.display = (matchesQ && matchesCat) ? '' : 'none';
+        });
+      }
+
+      search.addEventListener('input', updateFilter);
+      filter.addEventListener('change', updateFilter);
+    })();
+
+    /* =========================
+       Lightbox for gallery & product images
+       ========================= */
+    (function(){
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+
+      // open when clicking thumbnails in gallery-strip
+      document.querySelectorAll('.gallery-thumb img, .product-media img').forEach(el=>{
+        el.style.cursor = 'zoom-in';
+        el.addEventListener('click', (e)=>{
+          const src = el.dataset.large || el.src;
+          img.src = src;
+          img.alt = el.alt || 'صورة';
+          lightbox.classList.add('active');
+          lightbox.setAttribute('aria-hidden','false');
+        });
+        // keyboard support: Enter opens
+        el.addEventListener('keydown', (ev)=>{
+          if(ev.key === 'Enter' || ev.key === ' '){
+            ev.preventDefault();
+            el.click();
+          }
+        });
+      });
+
+      lightbox.addEventListener('click', ()=>{
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden','true');
+        img.src = '';
+      });
+
+      // close on Escape
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && lightbox.classList.contains('active')){
+          lightbox.classList.remove('active');
+          lightbox.setAttribute('aria-hidden','true');
+          img.src = '';
+        }
+      });
+    })();
+
+    /* =========================
+       Contact form (simple client-side)
+       ========================= */
     (function(){
       const form = document.getElementById('contactForm');
       const msg = document.getElementById('formMsg');
@@ -449,7 +532,6 @@
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
-        const honeypot = document.getElementById('phone_hp').value.trim();
         const lang = localStorage.getItem('site_lang') || (navigator.language && /^en/i.test(navigator.language) ? 'en' : 'ar');
 
         if(!name || !email || !message){
@@ -459,44 +541,21 @@
           return;
         }
 
-        if(honeypot){
-          msg.style.display = '';
-          msg.style.color = '#198754';
-          msg.textContent = lang === 'ar' ? 'تم إرسال رسالتك — شكرًا!' : 'Your message has been sent — thank you!';
-          form.reset();
-          return;
-        }
-
-        // هنا يمكنك استبدال المسار endpoint بمسار API حقيقي
-        try{
-          const res = await fetch('/api/contact', {
-            method:'POST',
-            headers:{ 'Content-Type':'application/json' },
-            body: JSON.stringify({ name, email, message })
-          });
-          if(res && res.ok){
-            msg.style.display = '';
-            msg.style.color = '#198754';
-            msg.textContent = lang === 'ar' ? 'تم إرسال رسالتك — شكرًا! سنتواصل معك قريبًا.' : 'Your message has been sent — thank you!';
-            form.reset();
-          } else {
-            throw new Error('server');
-          }
-        }catch(err){
-          msg.style.display = '';
-          msg.style.color = '#d63384';
-          msg.textContent = lang === 'ar' ? 'حدث خطأ أثناء الإرسال. حاول لاحقًا.' : 'An error occurred while sending. Please try again later.';
-        }
+        // mock send
+        msg.style.display = '';
+        msg.style.color = '#198754';
+        msg.textContent = lang === 'ar' ? 'تم إرسال رسالتك — شكرًا! سنتواصل معك قريبًا.' : 'Your message has been sent — thank you!';
+        form.reset();
+        setTimeout(()=> msg.style.display = 'none', 5000);
       });
     })();
 
-    // Back to top & small helpers
+    /* =========================
+       Back to top
+       ========================= */
     (function(){
       const back = document.getElementById('backTop');
-      window.addEventListener('scroll', ()=>{
-        if(window.scrollY > 300) back.style.display = 'block';
-        else back.style.display = 'none';
-      });
+      window.addEventListener('scroll', ()=> back.style.display = window.scrollY > 300 ? 'block' : 'none');
       back.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
       document.getElementById('site-year').textContent = new Date().getFullYear();
     })();
