@@ -1,5 +1,4 @@
-# Writing a fixed, cleaned HTML file for the user to download.
-html = r"""<!doctype html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
@@ -427,10 +426,7 @@ html = r"""<!doctype html>
   </script>
 </body>
 </html>
-"""
-# write file
-with open('/mnt/data/alanam_fixed.html','w',encoding='utf-8') as f:
-    f.write(html)
+
 
 # expose link for user
 print("[Download the fixed HTML file](sandbox:/mnt/data/alanam_fixed.html)")
